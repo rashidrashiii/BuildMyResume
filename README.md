@@ -231,6 +231,3 @@ MIT — free for personal and commercial use. See [LICENSE](LICENSE).
 **Created by [Muhammed Rashid V](https://linkedin.com/in/muhammed-rashid-v)** — Connect with me on LinkedIn for collaboration opportunities and professional networking.
 
 ---
-
-*Want to add a screenshot or video demo?*  
-Just upload your image/video and update the links above!
