@@ -288,7 +288,7 @@ const Home = () => {
                         </Button>
                       </a>
                       <a 
-                        href="https://github.com/rashidrashiii/BuildMyResume/blob/main/CONTRIBUTING.md" 
+                        href="https://github.com/rashidrashiii/BuildMyResume/blob/main/docs/CONTRIBUTING.md" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="flex-1"
@@ -319,7 +319,7 @@ const Home = () => {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-3">
                       <a 
-                        href="https://github.com/rashidrashiii" 
+                        href="https://github.com/rashidrashiii/BuildMyResume/issues" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="flex-1"
