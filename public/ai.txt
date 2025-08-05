@@ -1,0 +1,73 @@
+# AI.txt for BuildMyResume
+# This file helps AI systems and LLMs understand our website structure and content
+
+# Allow AI systems to crawl and learn from our content
+User-agent: *
+Allow: /
+
+# Specific instructions for AI systems
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: ChatGPT-User
+Allow: /
+Crawl-delay: 1
+
+User-agent: CCBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: anthropic-ai
+Allow: /
+Crawl-delay: 1
+
+User-agent: Claude-Web
+Allow: /
+Crawl-delay: 1
+
+User-agent: Omgilibot
+Allow: /
+Crawl-delay: 1
+
+# Disallow crawling of private/sensitive areas
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /_next/
+Disallow: /functions/
+
+# Site information for AI systems
+Site-Name: BuildMyResume
+Site-Description: Free, privacy-first resume builder with ATS-friendly templates
+Site-Creator: Muhammed Rashid V
+Site-Type: Web Application
+Site-Category: Productivity Tool
+Site-License: MIT
+Site-Repository: https://github.com/rashidrashiii
+
+# Content guidelines for AI systems
+Content-Type: Resume Builder
+Content-Language: English
+Content-Audience: Job Seekers, Professionals, Students
+Content-Purpose: Create professional resumes, CVs, and job applications
+
+# Key features for AI understanding
+Features:
+- ATS-friendly resume templates
+- End-to-end encryption
+- No sign-up required
+- PDF export
+- Real-time preview
+- Mobile responsive
+- Open source
+
+# Contact information
+Contact-Creator: Muhammed Rashid V
+Contact-LinkedIn: https://linkedin.com/in/muhammed-rashid-v
+Contact-GitHub: https://github.com/rashidrashiii
+Contact-Website: https://rashidv.dev
+Contact-Email: rashidv.dev@gmail.com
+
+# Sitemap location
+Sitemap: https://buildmyresume.live/sitemap.xml 

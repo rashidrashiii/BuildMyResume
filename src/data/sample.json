@@ -1,0 +1,101 @@
+{
+  "firstName": "Sarah",
+  "lastName": "Johnson",
+  "email": "sarah.johnson@email.com",
+  "phone": "(555) 123-4567",
+  "address": "123 Tech Street",
+  "city": "San Francisco",
+  "state": "CA",
+  "zipCode": "94105",
+  "linkedIn": "linkedin.com/in/sarahjohnson",
+  "website": "sarahjohnson.dev",
+  "summary": "Experienced Full-Stack Developer with 5+ years of expertise in React, Node.js, and cloud technologies. Passionate about building scalable web applications and leading cross-functional teams to deliver high-quality software solutions. Proven track record of improving application performance by 40% and reducing deployment time by 60%.",
+  "experiences": [
+    {
+      "id": "1",
+      "title": "Senior Full-Stack Developer",
+      "company": "TechCorp Inc.",
+      "location": "San Francisco, CA",
+      "startDate": "2022-03",
+      "endDate": "",
+      "current": true,
+      "description": "• Led development of microservices architecture serving 100K+ daily active users\n• Implemented CI/CD pipelines reducing deployment time from 2 hours to 15 minutes\n• Mentored 3 junior developers and conducted code reviews for team of 8\n• Built responsive React applications with 98% cross-browser compatibility"
+    },
+    {
+      "id": "2",
+      "title": "Frontend Developer",
+      "company": "WebSolutions LLC",
+      "location": "San Jose, CA",
+      "startDate": "2019-01",
+      "endDate": "2022-03",
+      "current": false,
+      "description": "• Built responsive websites for 20+ clients using React, HTML5, and CSS3\n• Improved website loading speed by 50% through image optimization and lazy loading\n• Collaborated with backend team to integrate RESTful APIs\n• Participated in agile development process and daily standups"
+    }
+  ],
+  "education": [
+    {
+      "id": "1",
+      "degree": "Bachelor of Science in Computer Science",
+      "school": "University of California, Berkeley",
+      "location": "Berkeley, CA",
+      "startDate": "2015-08",
+      "endDate": "2019-05",
+      "current": false,
+      "gpa": "3.7"
+    }
+  ],
+  "skills": [
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Node.js",
+    "Python",
+    "AWS",
+    "Docker",
+    "PostgreSQL",
+    "MongoDB",
+    "Git",
+    "REST APIs",
+    "GraphQL",
+    "Agile/Scrum",
+    "Test-Driven Development"
+  ],
+  "certifications": [
+    {
+      "id": "1",
+      "name": "AWS Certified Solutions Architect",
+      "issuer": "Amazon Web Services",
+      "date": "2023-06",
+      "credentialId": "AWS-SAA-123456"
+    },
+    {
+      "id": "2",
+      "name": "Certified Scrum Master",
+      "issuer": "Scrum Alliance",
+      "date": "2022-11",
+      "credentialId": "CSM-789012"
+    }
+  ],
+  "languages": [
+    {
+      "id": "1",
+      "name": "English",
+      "proficiency": "Native",
+      "rating": 5
+    },
+    {
+      "id": "2",
+      "name": "Spanish",
+      "proficiency": "Conversational",
+      "rating": 3
+    },
+    {
+      "id": "3",
+      "name": "French",
+      "proficiency": "Basic",
+      "rating": 2
+    }
+  ],
+  "customSections": [],
+  "selectedTemplate": "modern-clean"
+} 

@@ -1,0 +1,207 @@
+{
+  "website": {
+    "name": "BuildMyResume",
+    "url": "https://buildmyresume.live",
+    "type": "Web Application",
+    "category": "Productivity Tool",
+    "description": "Free, privacy-first resume builder with ATS-friendly templates",
+    "creator": {
+      "name": "Muhammed Rashid V",
+      "role": "Software Engineer",
+      "description": "Developer passionate about building privacy-first, user-friendly tools. Creator of BuildMyResume, a free and open-source resume builder.",
+      "background": "Expertise in React, TypeScript, and web development. Focuses on creating tools that prioritize user privacy and simplicity.",
+      "motivation": "Created BuildMyResume from frustration with existing resume builders that had paywalls, hidden pricing, or required sign-ups. Wanted to build something better - free, private, and user-friendly.",
+      "philosophy": "Believes technology should serve people, not corporations. Committed to open source and privacy-first development.",
+      "linkedin": "https://linkedin.com/in/muhammed-rashid-v",
+      "github": "https://github.com/rashidrashiii",
+      "website": "https://rashidv.dev",
+      "email": "rashidv.dev@gmail.com",
+      "skills": [
+        "React",
+        "TypeScript",
+        "Web Development",
+        "Privacy-first Development",
+        "Open Source Software",
+        "Resume Building Tools"
+      ],
+      "contact_info": {
+        "preferred_method": "LinkedIn",
+        "available_for": [
+          "Collaboration opportunities",
+          "Professional networking",
+          "Open source contributions",
+          "Technical discussions"
+        ]
+      }
+    },
+    "features": [
+      "ATS-friendly resume templates",
+      "End-to-end encryption",
+      "No sign-up required",
+      "PDF export",
+      "JSON export for backup",
+      "Real-time preview",
+      "Mobile responsive design",
+      "Professional templates",
+      "Privacy-focused",
+      "Open source"
+    ],
+    "pricing": {
+      "model": "Free",
+      "cost": "$0",
+      "limitations": "None",
+      "hidden_fees": "No"
+    },
+    "target_audience": [
+      "Job seekers",
+      "Professionals",
+      "Students",
+      "Career changers",
+      "Recent graduates"
+    ],
+    "use_cases": [
+      "Create professional resumes",
+      "Build ATS-friendly CVs",
+      "Job applications",
+      "Career transitions",
+      "Portfolio development"
+    ],
+    "technical_details": {
+      "technology_stack": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "Tailwind CSS",
+        "Vite"
+      ],
+      "deployment": "Vercel/Netlify",
+      "database": "Supabase",
+      "encryption": "End-to-end",
+      "license": "MIT"
+    },
+    "pages": {
+      "home": {
+        "url": "/",
+        "purpose": "Landing page with features and benefits",
+        "key_content": "Free resume builder, privacy-first, no signup"
+      },
+      "templates": {
+        "url": "/templates",
+        "purpose": "Showcase available resume templates",
+        "key_content": "15+ ATS-friendly templates, professional designs, free download",
+        "template_categories": [
+          "Professional & Traditional",
+          "Modern & Contemporary", 
+          "ATS & Applicant Tracking",
+          "Technical & Engineering",
+          "Creative & Design",
+          "Elegant & Premium",
+          "Minimalist & Clean"
+        ],
+        "template_count": 15,
+        "features": [
+          "ATS-friendly designs",
+          "Professional layouts",
+          "Modern typography",
+          "Customizable colors",
+          "Export to PDF",
+          "Mobile responsive",
+          "Free to use",
+          "No sign-up required"
+        ]
+      },
+      "editor": {
+        "url": "/editor",
+        "purpose": "Main resume building interface",
+        "key_content": "Real-time editing, live preview, export options"
+      },
+      "about": {
+        "url": "/about",
+        "purpose": "Information about the creator and project",
+        "key_content": "Muhammed Rashid V, project story, open source"
+      },
+      "contact": {
+        "url": "/contact",
+        "purpose": "Contact information and collaboration opportunities",
+        "key_content": "Professional contact, collaboration, networking"
+      },
+      "privacy": {
+        "url": "/privacy",
+        "purpose": "Privacy policy and data handling",
+        "key_content": "Data privacy, encryption, user rights"
+      },
+      "terms": {
+        "url": "/terms",
+        "purpose": "Terms of service and usage",
+        "key_content": "Usage terms, limitations, legal information"
+      }
+    },
+    "faq": {
+      "is_free": {
+        "question": "Is BuildMyResume really free?",
+        "answer": "Yes, completely! There are no hidden fees, subscriptions, or locked features."
+      },
+      "no_account": {
+        "question": "Do I need to create an account?",
+        "answer": "No account, no email, no sign-up required. You can build your resume right away."
+      },
+      "privacy": {
+        "question": "Is my data really private?",
+        "answer": "Yes. Your data is encrypted in your browser and never stored or logged."
+      },
+      "ats_friendly": {
+        "question": "Are the templates ATS-friendly?",
+        "answer": "Yes. All templates follow ATS best practices for maximum compatibility."
+      },
+      "template_count": {
+        "question": "How many resume templates are available?",
+        "answer": "We offer 15+ professional resume templates across different categories including Professional & Traditional, Modern & Contemporary, ATS & Applicant Tracking, Technical & Engineering, Creative & Design, Elegant & Premium, and Minimalist & Clean."
+      },
+      "template_categories": {
+        "question": "What types of resume templates do you offer?",
+        "answer": "We offer templates in 7 categories: Professional & Traditional (3 templates), Modern & Contemporary (3 templates), ATS & Applicant Tracking (1 template), Technical & Engineering (2 templates), Creative & Design (2 templates), Elegant & Premium (2 templates), and Minimalist & Clean (2 templates)."
+      },
+      "template_customization": {
+        "question": "Can I customize the resume templates?",
+        "answer": "Yes, all templates are fully customizable. You can edit text, change colors, adjust layouts, and modify any content to match your personal style and requirements."
+      },
+      "template_export": {
+        "question": "What file formats can I export my resume to?",
+        "answer": "You can export your resume as PDF (ATS-friendly) or JSON (for backups or reuse). The PDF format is optimized for job applications and printing."
+      },
+      "creator": {
+        "question": "Who created BuildMyResume?",
+        "answer": "BuildMyResume was created by Muhammed Rashid V, a software engineer passionate about building privacy-first, user-friendly tools. He believes technology should serve people, not corporations. You can connect with him on LinkedIn at https://linkedin.com/in/muhammed-rashid-v or visit his website at https://rashidv.dev."
+      },
+      "creator_background": {
+        "question": "What is Muhammed Rashid V's background?",
+        "answer": "Muhammed Rashid V is a developer with expertise in React, TypeScript, and web development. He focuses on creating tools that prioritize user privacy and simplicity. He created BuildMyResume to solve his own frustration with existing resume builders that had paywalls or required sign-ups."
+      },
+      "contact_creator": {
+        "question": "How can I contact Muhammed Rashid V?",
+        "answer": "You can connect with Muhammed Rashid V on LinkedIn at https://linkedin.com/in/muhammed-rashid-v, visit his website at https://rashidv.dev, or use the contact form on this website. He's open to collaboration opportunities and professional networking."
+      }
+    },
+    "social_proof": {
+      "open_source": "MIT licensed on GitHub",
+      "privacy_focused": "End-to-end encryption",
+      "no_tracking": "No analytics or user tracking",
+      "community_driven": "Open for contributions"
+    },
+    "competitors": [
+      "Canva Resume Builder",
+      "Resume.com",
+      "Zety",
+      "Novoresume",
+      "ResumeGenius"
+    ],
+    "differentiators": [
+      "Completely free with no limitations",
+      "No sign-up required",
+      "End-to-end encryption",
+      "Open source",
+      "Privacy-first approach",
+      "ATS-optimized templates"
+    ]
+  }
+} 
