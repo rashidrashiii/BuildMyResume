@@ -47,11 +47,11 @@
 flowchart TD
     A[User fills form] --> B[Live resume preview]
     B --> C{Export or Publish?}
-    C -- Export --> D[Encrypt + sign HTML]
-    D --> E[Send to backend (serverless)]
-    E --> F[Generate PDF (Puppeteer)]
+    C -->|Export| D[Encrypt + sign HTML]
+    D --> E[Send to backend serverless]
+    E --> F[Generate PDF Puppeteer]
     F --> G[Return base64 PDF to user]
-    C -- Publish --> H[Encrypt and save to DB]
+    C -->|Publish| H[Encrypt and save to DB]
     H --> I[Return unique, sharable URL]
     I --> J[Resume can be edited/decrypted via URL+key]
 ```

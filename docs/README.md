@@ -16,9 +16,6 @@ Welcome to the BuildMyResume documentation! This folder contains comprehensive g
 - **[Firebase Functions](./FUNCTIONS.md)** - Backend functions documentation and setup
 - **[SEO Guide](./SEO_GUIDE.md)** - Search engine optimization guidelines
 
-### 🔒 Security & Deployment
-- **[Public Repository Checklist](./PUBLIC_REPO_CHECKLIST.md)** - Security review and deployment checklist
-
 ## 🎯 Quick Navigation
 
 ### For New Contributors
@@ -32,8 +29,7 @@ Welcome to the BuildMyResume documentation! This folder contains comprehensive g
 3. [SEO Guide](./SEO_GUIDE.md) - Optimization best practices
 
 ### For Deployment
-1. [Public Repository Checklist](./PUBLIC_REPO_CHECKLIST.md) - Security and deployment verification
-2. [Firebase Functions](./FUNCTIONS.md) - Production deployment guide
+1. [Firebase Functions](./FUNCTIONS.md) - Production deployment guide
 
 ## 📖 Documentation Structure
 
@@ -44,8 +40,7 @@ docs/
 ├── TEMPLATE_GUIDE.md           # Template creation guide
 ├── TEMPLATE_ORGANIZATION.md    # Template structure guide
 ├── FUNCTIONS.md                # Firebase Functions documentation
-├── SEO_GUIDE.md                # SEO optimization guide
-└── PUBLIC_REPO_CHECKLIST.md    # Security and deployment checklist
+└── SEO_GUIDE.md                # SEO optimization guide checklist
 ```
 
 ## 🤝 Need Help?
