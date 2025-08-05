@@ -95,11 +95,14 @@ VITE_EXPORT_API=https://your-cloud-function-url
 VITE_SHARED_SECRET=your-shared-secret
 VITE_SUPABASE_URL=https://your-supabase-url
 VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+VITE_BASE_URL=http://localhost:8080
 ```
 
 - `VITE_EXPORT_API`: URL of your deployed PDF export function
 - `VITE_SHARED_SECRET`: Secret used for encrypting/signing PDF export payloads
-- `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`: For published resume storage
+- `VITE_SUPABASE_URL`: Your Supabase project URL (for published resume storage)
+- `VITE_SUPABASE_ANON_KEY`: Your Supabase anon/public API key
+- `VITE_BASE_URL`: The base URL of your frontend app (e.g., http://localhost:5173)
 
 ---
 
@@ -118,6 +121,7 @@ VITE_SHARED_SECRET=your-shared-secret
 VITE_EXPORT_API=http://localhost:5001/export-pdf
 VITE_SUPABASE_URL=https://your-supabase-url
 VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+VITE_BASE_URL=http://localhost:5173
 ```
 
 ---
