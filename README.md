@@ -213,7 +213,7 @@ See [CONTRIBUTING.md](./docs/CONTRIBUTING.md) for guidelines.
 - ![Screenshot 1](public/screenshot1.png)
 - ![Screenshot 2](public/screenshot2.png)
 
-**Live Demo:** [buildmyresume.app](https://buildmyresume.app)
+**Live Demo:** [buildmyresume.app](https://buildmyresume.live)
 **Video Demo:** [Watch on YouTube](https://youtu.be/your-demo-link)
 
 ---
