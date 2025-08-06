@@ -42,8 +42,27 @@ export const PublishButton = ({ resumeData, existingId, onPublished, keyProp }: 
     return match ? decodeURIComponent(match[1]) : null;
   }
 
+  // Helper function to check if form has any meaningful data
+  const isFormEmpty = () => {
+    return !(resumeData.firstName || resumeData.lastName || resumeData.email || 
+             resumeData.phone || resumeData.summary || resumeData.experiences.length > 0 || 
+             resumeData.education.length > 0 || resumeData.skills.length > 0 ||
+             resumeData.certifications.length > 0 || resumeData.languages.length > 0 ||
+             resumeData.customSections.length > 0);
+  };
+
   const handlePublish = async () => {
     try {
+      // Check if form is empty (showing dummy data)
+      if (isFormEmpty()) {
+        toast({
+          title: "Resume is empty",
+          description: "Fill out the form to publish your resume. The preview shows sample data - start adding your own details!",
+          variant: "destructive",
+        });
+        return;
+      }
+
       // Pre-validation checks
       const validation = validateResumeData(resumeData);
       if (!validation.isValid) {
