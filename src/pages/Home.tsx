@@ -90,18 +90,34 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-              <Link to="/editor" className="w-full sm:w-auto">
-                <Button size="lg" className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 min-h-[48px] shadow-elegant">
-                  Start Building
-                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-                </Button>
-              </Link>
-              <Link to="/templates" className="w-full sm:w-auto">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 min-h-[48px]">
-                  View Templates
-                </Button>
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+                <Link to="/editor" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 min-h-[48px] shadow-elegant">
+                    Start Building
+                    <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  </Button>
+                </Link>
+                <Link to="/templates" className="w-full sm:w-auto">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 min-h-[48px]">
+                    View Templates
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Product Hunt Badge in Hero */}
+            <div className="flex justify-center">
+                <a
+                  href="https://www.producthunt.com/products/buildmyresume?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-buildmyresume"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="BuildMyResume on Product Hunt"
+                >
+                  <img
+                    src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1003446&theme=light&t=1754748059292"
+                    alt="BuildMyResume - Featured on Product Hunt"
+                    className="h-8 sm:h-9 md:h-10 w-auto"
+                  />
+                </a>
             </div>
 
             {/* Product Hunt Badge in Hero */}
@@ -122,7 +138,7 @@ const Home = () => {
             </div>
 
             {/* Benefits Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl mx-auto pt-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl mx-auto pt-4">
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-center justify-center space-x-2 text-sm text-center">
                   <CheckCircle className="h-4 w-4 text-success" />
