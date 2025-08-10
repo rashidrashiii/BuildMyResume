@@ -96,6 +96,8 @@ VITE_SHARED_SECRET=your-shared-secret
 VITE_SUPABASE_URL=https://your-supabase-url
 VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
 VITE_BASE_URL=http://localhost:8080
+VITE_UMAMI_SRC=https://cloud.umami.is/script.js
+VITE_UMAMI_WEBSITE_ID=your-umami-website-id
 ```
 
 - `VITE_EXPORT_API`: URL of your deployed PDF export function
@@ -103,6 +105,8 @@ VITE_BASE_URL=http://localhost:8080
 - `VITE_SUPABASE_URL`: Your Supabase project URL (for published resume storage)
 - `VITE_SUPABASE_ANON_KEY`: Your Supabase anon/public API key
 - `VITE_BASE_URL`: The base URL of your frontend app (e.g., http://localhost:5173)
+- `VITE_UMAMI_SRC`: Umami script URL (cloud or self-hosted). Example: `https://cloud.umami.is/script.js`
+- `VITE_UMAMI_WEBSITE_ID`: Your Umami website ID
 
 ---
 
@@ -122,7 +126,28 @@ VITE_EXPORT_API=http://localhost:5001/export-pdf
 VITE_SUPABASE_URL=https://your-supabase-url
 VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
 VITE_BASE_URL=http://localhost:5173
+VITE_UMAMI_SRC=https://cloud.umami.is/script.js
+VITE_UMAMI_WEBSITE_ID=your-umami-website-id
 ```
+
+---
+
+## 📊 Analytics (Umami)
+
+This project uses **Umami** for privacy-friendly analytics.
+
+- Analytics script is loaded dynamically from `src/components/Analytics.tsx`.
+- Auto-tracking is disabled, and pageviews are tracked manually on route changes.
+- Published resume pages (`/view/:id`) are intentionally **excluded** from analytics to protect user privacy.
+- If `VITE_UMAMI_SRC` or `VITE_UMAMI_WEBSITE_ID` are missing, analytics is skipped entirely.
+
+How to set up:
+- Create a site in Umami and copy the website ID.
+- Set `VITE_UMAMI_SRC` to your Umami script URL (Cloud: `https://cloud.umami.is/script.js` or your self-hosted URL).
+- Set `VITE_UMAMI_WEBSITE_ID` to your website ID.
+
+Event tracking:
+- The app currently tracks only pageviews (excluding `/view/:id`). You can extend it to track custom events using `window.umami.track(eventName, data)` in your components.
 
 ---
 
