@@ -124,9 +124,11 @@ const Home = () => {
             {/* Benefits Grid */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
               {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-center justify-center space-x-2 text-sm text-center">
-                  <CheckCircle className="h-4 w-4 text-success" />
-                  <span className="text-muted-foreground">{benefit}</span>
+                <div key={index} className="flex justify-center">
+                  <div className="flex items-start md:items-center space-x-2 text-sm max-w-[120px] md:max-w-none">
+                    <CheckCircle className="h-4 w-4 text-success mt-0.5 md:mt-0 flex-shrink-0" />
+                    <span className="text-muted-foreground text-center leading-tight md:leading-normal">{benefit}</span>
+                  </div>
                 </div>
               ))}
             </div>

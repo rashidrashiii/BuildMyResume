@@ -1,7 +1,7 @@
 {
-  "name": "BuildMyResume - Free Resume Builder",
+  "name": "BuildMyResume - AI-Powered Resume Builder",
   "short_name": "BuildMyResume",
-  "description": "Create professional, ATS-friendly resumes in minutes. 100% free, no sign-up required, end-to-end encrypted.",
+  "description": "Create professional, ATS-friendly resumes with AI-powered content enhancement. 100% free, no sign-up required, end-to-end encrypted.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -9,7 +9,7 @@
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "en",
-  "categories": ["productivity", "business", "education"],
+  "categories": ["productivity", "business", "education", "ai", "resume-builder"],
   "icons": [
     {
       "src": "/favicon-16x16.png",
@@ -55,7 +55,7 @@
     {
       "name": "Create Resume",
       "short_name": "Create",
-      "description": "Start building a new resume",
+      "description": "Start building a new resume with AI enhancement",
       "url": "/editor",
       "icons": [
         {
@@ -69,6 +69,18 @@
       "short_name": "Templates",
       "description": "View available resume templates",
       "url": "/templates",
+      "icons": [
+        {
+          "src": "/favicon-32x32.png",
+          "sizes": "32x32"
+        }
+      ]
+    },
+    {
+      "name": "AI Enhancement",
+      "short_name": "AI",
+      "description": "Try AI-powered content enhancement",
+      "url": "/editor",
       "icons": [
         {
           "src": "/favicon-32x32.png",
