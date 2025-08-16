@@ -4,6 +4,7 @@ import { Sparkles, Loader2, Check, X, Undo2, AlertCircle } from 'lucide-react';
 import { enhanceContentWithAI, AIField } from '@/services/ai';
 import { useResume } from '@/contexts/ResumeContext';
 import { toast } from 'sonner';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface AIEnhanceButtonProps {
   field: AIField;
@@ -31,6 +32,7 @@ const AIEnhanceButton = ({
   const { state, incrementEnhancementCount } = useResume();
   const enhancementCount = state.enhancementCounts[field] || 0;
   const MAX_ENHANCEMENTS = 5;
+  const isMobile = useIsMobile();
 
       const handleEnhance = async () => {
       if (!currentContent.trim()) {
@@ -157,18 +159,20 @@ const AIEnhanceButton = ({
           variant="outline"
           onClick={handleAccept}
           className="text-green-600 hover:text-green-700"
+          title="Accept enhanced content"
         >
-          <Check className="h-4 w-4 mr-1" />
-          Accept
+          <Check className="h-4 w-4" />
+          {!isMobile && <span className="ml-1">Accept</span>}
         </Button>
         <Button
           size="sm"
           variant="outline"
           onClick={handleReject}
           className="text-red-600 hover:text-red-700"
+          title="Reject and restore original content"
         >
-          <Undo2 className="h-4 w-4 mr-1" />
-          Reject
+          <Undo2 className="h-4 w-4" />
+          {!isMobile && <span className="ml-1">Reject</span>}
         </Button>
       </div>
     );

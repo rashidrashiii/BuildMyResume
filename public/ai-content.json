@@ -4,7 +4,7 @@
     "url": "https://buildmyresume.live",
     "type": "Web Application",
     "category": "Productivity Tool",
-    "description": "Free, privacy-first resume builder with ATS-friendly templates",
+    "description": "Free, AI-powered resume builder with ATS-friendly templates and content enhancement",
     "creator": {
       "name": "Muhammed Rashid V",
       "role": "Software Engineer",
@@ -35,6 +35,8 @@
       }
     },
     "features": [
+      "AI-powered content enhancement",
+      "Google Gemini AI integration",
       "ATS-friendly resume templates",
       "End-to-end encryption",
       "No sign-up required",
@@ -112,8 +114,8 @@
       },
       "editor": {
         "url": "/editor",
-        "purpose": "Main resume building interface",
-        "key_content": "Real-time editing, live preview, export options"
+        "purpose": "Main resume building interface with AI enhancement",
+        "key_content": "Real-time editing, live preview, AI content enhancement, export options"
       },
       "about": {
         "url": "/about",
@@ -137,6 +139,14 @@
       }
     },
     "faq": {
+      "ai_enhancement": {
+        "question": "What is the AI enhancement feature?",
+        "answer": "BuildMyResume includes AI-powered content enhancement using Google Gemini 2.5 Flash-Lite. You can enhance your professional summary, job descriptions, and custom content with intelligent suggestions that make your resume more compelling and ATS-friendly."
+      },
+      "ai_free": {
+        "question": "Is the AI enhancement free?",
+        "answer": "Yes, the AI enhancement feature is completely free! You get 5 enhancement attempts per field per resume. The AI validates content relevance and provides professional improvements."
+      },
       "is_free": {
         "question": "Is BuildMyResume really free?",
         "answer": "Yes, completely! There are no hidden fees, subscriptions, or locked features."
@@ -196,6 +206,7 @@
       "ResumeGenius"
     ],
     "differentiators": [
+      "AI-powered content enhancement",
       "Completely free with no limitations",
       "No sign-up required",
       "End-to-end encryption",
