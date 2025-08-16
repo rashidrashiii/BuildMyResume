@@ -14,6 +14,7 @@ Welcome to the BuildMyResume documentation! This folder contains comprehensive g
 
 ### 🔧 Development
 - **[Firebase Functions](./FUNCTIONS.md)** - Backend functions documentation and setup
+- **[AI Enhancement Guide](./AI_ENHANCEMENT.md)** - AI-powered content enhancement feature documentation
 - **[SEO Guide](./SEO_GUIDE.md)** - Search engine optimization guidelines
 
 ## 🎯 Quick Navigation
@@ -25,8 +26,9 @@ Welcome to the BuildMyResume documentation! This folder contains comprehensive g
 
 ### For Developers
 1. [Firebase Functions](./FUNCTIONS.md) - Backend setup and API documentation
-2. [Template Organization](./TEMPLATE_ORGANIZATION.md) - Code structure guidelines
-3. [SEO Guide](./SEO_GUIDE.md) - Optimization best practices
+2. [AI Enhancement Guide](./AI_ENHANCEMENT.md) - AI feature implementation and setup
+3. [Template Organization](./TEMPLATE_ORGANIZATION.md) - Code structure guidelines
+4. [SEO Guide](./SEO_GUIDE.md) - Optimization best practices
 
 ### For Deployment
 1. [Firebase Functions](./FUNCTIONS.md) - Production deployment guide
@@ -40,6 +42,7 @@ docs/
 ├── TEMPLATE_GUIDE.md           # Template creation guide
 ├── TEMPLATE_ORGANIZATION.md    # Template structure guide
 ├── FUNCTIONS.md                # Firebase Functions documentation
+├── AI_ENHANCEMENT.md           # AI-powered content enhancement guide
 └── SEO_GUIDE.md                # SEO optimization guide checklist
 ```
 

@@ -17,6 +17,7 @@
   },
   "main": "lib/index.js",
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "chrome-aws-lambda": "^10.1.0",
     "cors": "^2.8.5",
     "crypto-js": "^4.1.1",

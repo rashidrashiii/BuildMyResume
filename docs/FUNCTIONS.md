@@ -22,7 +22,11 @@ Frontend (React) → Encrypt HTML → Send to Firebase Function → Generate PDF
 
 ### `api` - Main HTTP Function
 
-**Endpoint:** `POST /export-pdf`
+**Endpoints:**
+- `POST /export-pdf` - Converts encrypted HTML resumes to PDF format
+- `POST /enhance-content` - AI-powered content enhancement for resumes
+
+#### PDF Export Endpoint
 
 **Purpose:** Converts encrypted HTML resumes to PDF format
 
@@ -54,11 +58,51 @@ Frontend (React) → Encrypt HTML → Send to Firebase Function → Generate PDF
 - `429` - Rate limit exceeded
 - `500` - Server error
 
+#### AI Enhancement Endpoint
+
+**Purpose:** Enhances resume content using Google Gemini AI
+
+**Security Features:**
+- Rate limiting (30 requests per 15 minutes per IP, 5 per field)
+- HMAC signature verification
+- Input validation and content filtering
+- Origin validation
+- Content relevance validation
+
+**Request Body:**
+```json
+{
+  "field": "summary|jobDescription|skills|customSection",
+  "content": "User content to enhance",
+  "rejectedResponses": ["previously rejected suggestions"],
+  "signature": "HMAC-SHA256 signature"
+}
+```
+
+**Response:**
+```json
+{
+  "enhancedContent": "AI-enhanced content",
+  "originalContent": "Original user content",
+  "field": "field-type"
+}
+```
+
+**Error Responses:**
+- `400` - Invalid content, validation failed, or content too long/short
+- `403` - Invalid signature or origin not allowed
+- `429` - Rate limit exceeded
+- `500` - AI service error or configuration error
+
 ## Environment Variables
 
 ### Required
 - `SHARED_SECRET` - Secret key for HMAC signature verification
 - `ALLOWED_ORIGINS` - Comma-separated list of allowed CORS origins
+
+### AI Enhancement (Required for AI features)
+- `GEMINI_API_KEY` - Google Gemini API key for AI content enhancement
+- `GEMINI_MODEL` - Google Gemini model name (default: `gemini-2.0-flash-lite`)
 
 ### Optional
 - `PORT` - Port for local development server (default: 5001)
@@ -91,7 +135,35 @@ Create a `.env` file in the `functions` directory:
 ```env
 SHARED_SECRET=your-shared-secret-here
 ALLOWED_ORIGINS=http://localhost:8080,https://yourdomain.com
+GEMINI_API_KEY=your-gemini-api-key-here
+GEMINI_MODEL=gemini-2.0-flash-lite
 ```
+
+## AI Enhancement Configuration
+
+### Available Models
+The AI enhancement feature supports various Google Gemini models:
+
+- `gemini-2.0-flash-lite` (default) - Fast, cost-effective for content enhancement
+- `gemini-2.0-flash-exp` - Experimental version with enhanced capabilities
+- `gemini-1.5-flash` - Alternative model for different use cases
+- `gemini-1.5-pro` - More powerful model for complex enhancements
+
+### Model Configuration
+```bash
+# Set model via Firebase Functions config
+firebase functions:config:set gemini.model="gemini-2.0-flash-lite"
+
+# Or set via environment variable
+GEMINI_MODEL=gemini-2.0-flash-lite
+```
+
+### AI Generation Settings
+The AI enhancement uses the following generation configuration:
+- **Temperature:** 0.9 (creativity balance)
+- **Top P:** 0.9 (nucleus sampling)
+- **Top K:** 50 (token diversity)
+- **Max Output Tokens:** 500 (response length limit)
 
 ## Production Deployment
 
@@ -175,6 +247,13 @@ npm run logs
 - Check HMAC algorithm consistency
 - Validate request format
 
+#### AI Enhancement Issues
+- Verify `GEMINI_API_KEY` is valid and has sufficient quota
+- Check `GEMINI_MODEL` is supported and available
+- Monitor rate limits and usage patterns
+- Validate content meets minimum requirements
+- Check for suspicious content patterns
+
 ### Debugging
 ```bash
 # View function logs
@@ -210,12 +289,19 @@ curl -X POST http://localhost:5001/export-pdf \
 - Error rates
 - Rate limit hits
 - PDF generation success rate
+- AI enhancement success rate
+- AI API response times
+- Content validation failures
+- Model usage and costs
 
 ### Alerts
 - High error rates
 - Memory usage spikes
 - Rate limit violations
 - Function timeouts
+- AI API quota exceeded
+- High AI enhancement failure rates
+- Unusual content validation patterns
 
 ## Future Enhancements
 

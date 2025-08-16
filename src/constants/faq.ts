@@ -10,6 +10,26 @@ export const faqItems = [
             "No account, no email, no sign-up required. You can build your resume right away without logging in or sharing any personal info."
     },
     {
+        question: "What is the AI enhancement feature?",
+        answer:
+            "BuildMyResume includes AI-powered content enhancement using Google Gemini. You can enhance your professional summary, job descriptions, and custom content with intelligent suggestions that make your resume more compelling and ATS-friendly. Each enhancement provides multiple options, and you can accept or reject suggestions."
+    },
+    {
+        question: "Is the AI enhancement free?",
+        answer:
+            "Yes, the AI enhancement feature is completely free! You get 5 enhancement attempts per field per resume. The AI validates content relevance and provides professional improvements to make your resume stand out to employers and ATS systems."
+    },
+    {
+        question: "How does AI enhancement work?",
+        answer:
+            "Simply click the 'Enhance' button next to supported fields like Professional Summary or Job Descriptions. The AI analyzes your content and provides improved versions with better language, action verbs, and ATS optimization. You can accept the suggestion or reject it to keep your original content. Each enhancement attempt gives you different options."
+    },
+    {
+        question: "Is my data safe when using AI enhancement?",
+        answer:
+            "Absolutely! AI enhancement requests are encrypted and processed securely. Your content is validated and never stored by the AI service. All requests are processed through secure, rate-limited endpoints with comprehensive privacy protection. Your resume data remains completely private throughout the enhancement process."
+    },
+    {
         question: "Can I edit my resume later without an account?",
         answer:
             "Yes! Just click the 'Publish Resume' button to save your data privately. You'll get a special link — visit it anytime to edit or download your resume from any device."
@@ -32,7 +52,7 @@ export const faqItems = [
     {
         question: "Are the templates ATS-friendly?",
         answer:
-            "Yes. All templates are designed to follow ATS best practices like clean layouts, proper headings, and readable structure to maximize your chances."
+            "Yes. All templates are designed to follow ATS best practices like clean layouts, proper headings, and readable structure to maximize your chances. Combined with our AI enhancement feature, you can create highly optimized resumes that stand out to both ATS systems and human recruiters."
     },
     {
         question: "Can I use this on mobile devices?",

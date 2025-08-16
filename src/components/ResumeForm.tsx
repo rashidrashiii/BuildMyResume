@@ -12,6 +12,8 @@ import { Plus, Trash2, User, Briefcase, GraduationCap, Award, Languages, Lightbu
 import { useResume } from "@/contexts/ResumeContext";
 import sampleData from "@/data/sample.json";
 import { Language } from "@/contexts/ResumeContext";
+import AIEnhanceButton from "@/components/AIEnhanceButton";
+import { AI_FIELDS } from "@/services/ai";
 
 const fixSampleLanguages = (languages: any[]): Language[] =>
   languages.map((lang) => ({
@@ -235,7 +237,16 @@ const ResumeForm = ({ disabled = false }: ResumeFormProps) => {
               <Separator />
 
               <div className="space-y-2">
-                <Label htmlFor="summary">Professional Summary</Label>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="summary">Professional Summary</Label>
+                  <AIEnhanceButton
+                    field={AI_FIELDS.SUMMARY}
+                    currentContent={state.data.summary}
+                    onEnhanced={(enhancedContent) => updateField('summary', enhancedContent)}
+                    disabled={isFormDisabled}
+                    className="ml-2"
+                  />
+                </div>
                 <Textarea
                   id="summary"
                   value={state.data.summary}
@@ -365,7 +376,16 @@ const ResumeForm = ({ disabled = false }: ResumeFormProps) => {
                       </div>
 
                       <div className="space-y-2">
-                        <Label>Job Description</Label>
+                        <div className="flex items-center justify-between">
+                          <Label>Job Description</Label>
+                          <AIEnhanceButton
+                            field={AI_FIELDS.JOB_DESCRIPTION}
+                            currentContent={experience.description}
+                            onEnhanced={(enhancedContent) => updateExperience(experience.id, { description: enhancedContent })}
+                            disabled={isFormDisabled}
+                            className="ml-2"
+                          />
+                        </div>
                         <Textarea
                           value={experience.description}
                           onChange={(e) => updateExperience(experience.id, { description: e.target.value })}
@@ -797,7 +817,16 @@ const ResumeForm = ({ disabled = false }: ResumeFormProps) => {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="space-y-2">
-                        <Label>Section Heading</Label>
+                        <div className="flex items-center justify-between">
+                          <Label>Section Heading</Label>
+                          <AIEnhanceButton
+                            field={AI_FIELDS.JOB_TITLE}
+                            currentContent={section.heading}
+                            onEnhanced={(enhancedContent) => updateCustomSection(section.id, { heading: enhancedContent })}
+                            disabled={isFormDisabled}
+                            className="ml-2"
+                          />
+                        </div>
                         <Input
                           value={section.heading}
                           onChange={(e) => updateCustomSection(section.id, { heading: e.target.value })}
@@ -806,7 +835,16 @@ const ResumeForm = ({ disabled = false }: ResumeFormProps) => {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label>Content</Label>
+                        <div className="flex items-center justify-between">
+                          <Label>Content</Label>
+                          <AIEnhanceButton
+                            field={AI_FIELDS.CUSTOM_SECTION}
+                            currentContent={section.content}
+                            onEnhanced={(enhancedContent) => updateCustomSection(section.id, { content: enhancedContent })}
+                            disabled={isFormDisabled}
+                            className="ml-2"
+                          />
+                        </div>
                         <Textarea
                           value={section.content}
                           onChange={(e) => updateCustomSection(section.id, { content: e.target.value })}
