@@ -54,12 +54,37 @@ BuildMyResume has been optimized for search engines with the following key impro
 - Logo and contact details
 - GitHub repository links
 
+#### AI Feature Schema
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "BuildMyResume AI Enhancement",
+  "description": "AI-powered content enhancement for resumes using Google Gemini",
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "AI content enhancement",
+    "ATS optimization",
+    "Professional language improvement",
+    "Google Gemini integration"
+  ]
+}
+```
+
 #### Additional Schemas Available
 - **FAQ Schema**: For FAQ pages
 - **Article Schema**: For blog posts
 - **Product Schema**: For resume templates
 - **Breadcrumb Schema**: For navigation
 - **LocalBusiness Schema**: For business information
+- **SoftwareApplication Schema**: For AI-powered features
+- **Service Schema**: For AI enhancement services
 
 ### 3. Technical SEO
 
@@ -151,8 +176,8 @@ const metaTags = generateMetaTags({
 ## 🚀 SEO Best Practices Implemented
 
 ### 1. Content Strategy
-- **Keyword Research**: Primary keywords: "resume builder", "ATS friendly", "free resume"
-- **Long-tail Keywords**: "professional resume templates", "privacy-first resume builder"
+- **Keyword Research**: Primary keywords: "AI resume builder", "resume builder", "ATS friendly", "free resume"
+- **Long-tail Keywords**: "professional resume templates", "privacy-first resume builder", "AI content enhancement", "Google Gemini resume"
 - **Content Structure**: Clear headings, bullet points, and scannable content
 
 ### 2. Technical Implementation
@@ -166,13 +191,20 @@ const metaTags = generateMetaTags({
 - **Call-to-Actions**: Prominent buttons and clear user flow
 - **Trust Signals**: Open source, privacy-focused messaging
 - **Social Proof**: GitHub stars and community features
+- **AI Features**: Highlight AI capabilities and benefits
+
+### 4. AI-Powered SEO
+- **AI Feature Keywords**: Target "AI resume builder", "AI content enhancement"
+- **Technology Integration**: Emphasize Google Gemini AI integration
+- **Content Enhancement**: Highlight AI-powered resume improvement
+- **Privacy & AI**: Address AI privacy concerns and security measures
 
 ## 📈 SEO Performance Metrics
 
 ### Target Keywords
-- **Primary**: "free resume builder", "ATS friendly resume"
-- **Secondary**: "resume templates", "CV builder", "professional resume"
-- **Long-tail**: "privacy-first resume builder", "open source resume maker"
+- **Primary**: "AI resume builder", "free resume builder", "ATS friendly resume"
+- **Secondary**: "resume templates", "CV builder", "professional resume", "AI content enhancement"
+- **Long-tail**: "privacy-first resume builder", "open source resume maker", "Google Gemini resume builder", "AI-powered resume enhancement"
 
 ### Expected Improvements
 - **Search Visibility**: 40-60% increase in organic traffic
@@ -216,6 +248,7 @@ BuildMyResume now features comprehensive SEO optimization including:
 
 ✅ **Technical SEO**: Sitemap, robots.txt, performance optimization  
 ✅ **Content SEO**: Meta tags, structured data, semantic HTML  
+✅ **AI SEO**: AI-powered features, Google Gemini integration, content enhancement  
 ✅ **Mobile SEO**: PWA support, responsive design, mobile optimization  
 ✅ **Social SEO**: Open Graph, Twitter Cards, social media optimization  
 ✅ **Local SEO**: Business schema, location optimization  

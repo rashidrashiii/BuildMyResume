@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { FileText, Shield, Zap, Github, ArrowRight, CheckCircle, Star, Play, Monitor, Smartphone, Users, GitFork, Heart } from "lucide-react";
+import { FileText, Shield, Zap, Github, ArrowRight, CheckCircle, Star, Play, Monitor, Smartphone, Users, GitFork, Heart, Sparkles, Bot } from "lucide-react";
 import { useState, useEffect } from "react";
 import { AppNavigation } from "@/components/AppNavigation";
 import Footer from "@/components/Footer";
@@ -32,13 +32,13 @@ const Home = () => {
     },
     {
       icon: <Zap className="h-8 w-8" />,
-      title: "Lightning Fast",
-      description: "Live preview, instant updates, and secure export to PDF or JSON."
+      title: "AI-Powered Enhancement",
+      description: "Intelligent content enhancement with Google Gemini AI for professional, ATS-friendly resumes."
     },
     {
       icon: <FileText className="h-8 w-8" />,
       title: "Professional Templates",
-      description: "ATS-friendlys templates designed to make you stand out."
+      description: "ATS-friendly templates designed to make you stand out."
     },
     {
       icon: <Github className="h-8 w-8" />,
@@ -50,19 +50,19 @@ const Home = () => {
 
   const benefits = [
     "No sign-up required",
+    "AI-powered enhancement",
     "ATS-friendly templates",
     "End-to-end encrypted",
     "Export to PDF & JSON",
-    "Real-time preview",
     "Free forever"
   ];
 
   return (
     <>
       <SEO 
-        title="Free Resume Builder - Create Professional ATS-Friendly Resumes"
-        description="Build professional, ATS-friendly resumes in minutes with our free resume builder. No sign-up required, end-to-end encrypted, and 100% free forever. Choose from beautiful templates designed for job seekers."
-        keywords="free resume builder, ATS friendly resume, professional resume templates, CV builder, job application, career tools, resume maker, online resume builder"
+        title="Free AI-Powered Resume Builder - Create Professional ATS-Friendly Resumes"
+        description="Build professional, ATS-friendly resumes with AI-powered content enhancement. Free resume builder with Google Gemini AI integration. No sign-up required, end-to-end encrypted, and 100% free forever."
+        keywords="AI resume builder, free resume builder, ATS friendly resume, professional resume templates, CV builder, job application, career tools, resume maker, online resume builder, AI content enhancement, Google Gemini resume"
         url={`${import.meta.env.VITE_BASE_URL || 'https://buildmyresume.live'}`}
         image={`${import.meta.env.VITE_BASE_URL || 'https://buildmyresume.live'}/og-image.png`}
       />
@@ -86,7 +86,8 @@ const Home = () => {
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Create professional, ATS-friendly resumes with our privacy-first, 
-                open-source resume builder. No sign-up required, completely free.
+                AI-powered resume builder. Enhanced with Google Gemini AI for better content. 
+                No sign-up required, completely free.
               </p>
             </div>
 
@@ -121,7 +122,7 @@ const Home = () => {
             </div>
 
             {/* Benefits Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl mx-auto pt-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-center justify-center space-x-2 text-sm text-center">
                   <CheckCircle className="h-4 w-4 text-success" />
@@ -131,7 +132,7 @@ const Home = () => {
             </div>
 
             {/* GitHub Stats */}
-            <div className="flex justify-center pt-6">
+            <div className="flex justify-center pt-2">
               <GitHubStats className="text-center" />
             </div>
           </div>
@@ -163,6 +164,72 @@ const Home = () => {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+          </section>
+
+          {/* AI Enhancement Section */}
+          <section className="py-12 sm:py-16 lg:py-24">
+            <div className="text-center space-y-4 mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold">
+                AI-Powered Content Enhancement
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Transform your resume content with intelligent AI suggestions powered by Google Gemini.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+              <Card className="border-0 shadow-card hover:shadow-float transition-all duration-300 text-center">
+                <CardHeader className="text-center">
+                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-2xl flex items-center justify-center text-purple-600 mb-4">
+                    <Sparkles className="h-8 w-8" />
+                  </div>
+                  <CardTitle className="text-xl">Smart Enhancement</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <CardDescription className="text-base leading-relaxed">
+                    Enhance your professional summary, job descriptions, and custom content with AI-powered suggestions that make your resume more compelling and ATS-friendly.
+                  </CardDescription>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 shadow-card hover:shadow-float transition-all duration-300 text-center">
+                <CardHeader className="text-center">
+                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-2xl flex items-center justify-center text-green-600 mb-4">
+                    <Bot className="h-8 w-8" />
+                  </div>
+                  <CardTitle className="text-xl">Intelligent Suggestions</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <CardDescription className="text-base leading-relaxed">
+                    Get multiple enhancement options with each click. Accept what you like, reject what you don't. The AI learns from your preferences to provide better suggestions.
+                  </CardDescription>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 shadow-card hover:shadow-float transition-all duration-300 text-center">
+                <CardHeader className="text-center">
+                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-orange-500/10 to-red-500/10 rounded-2xl flex items-center justify-center text-orange-600 mb-4">
+                    <Shield className="h-8 w-8" />
+                  </div>
+                  <CardTitle className="text-xl">Privacy & Security</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <CardDescription className="text-base leading-relaxed">
+                    All AI enhancements are processed securely with end-to-end encryption. Your content is validated and never stored. Complete privacy protection.
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="text-center">
+              <Link to="/editor">
+                <Button size="lg" className="text-base sm:text-lg px-8 py-6 min-h-[48px] bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
+                  <Sparkles className="mr-2 h-5 w-5" />
+                  Try AI Enhancement
+                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                </Button>
+              </Link>
             </div>
           </section>
 

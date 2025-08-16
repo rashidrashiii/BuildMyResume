@@ -11,10 +11,11 @@
 
 ## 🚀 Project Overview
 
-**BuildMyResume** is for anyone who wants to build a professional, ATS-friendly resume — without creating an account, paying hidden fees, or giving up privacy. Created by [Muhammed Rashid V](https://linkedin.com/in/muhammed-rashid-v).
+**BuildMyResume** is for anyone who wants to build a professional, ATS-friendly resume with AI-powered content enhancement — without creating an account, paying hidden fees, or giving up privacy. Created by [Muhammed Rashid V](https://linkedin.com/in/muhammed-rashid-v).
 
 - **No login required**: Build and download resumes instantly, no sign-up or email needed.
 - **Publish for later**: Use the “Publish” feature to get a secure, encrypted link you can revisit from any device.
+- **AI-powered enhancement**: Intelligent content improvement with Google Gemini AI for better ATS optimization.
 - **End-to-end encrypted**: All resume data is encrypted before storage or export. Only you hold the key.
 - **Open source & free forever**: MIT licensed, transparent, and built for the community.
 
@@ -23,6 +24,7 @@
 ## ✨ Features
 
 - 🧩 **Form-based resume builder** — Fill out a structured form and see your resume update in real time.
+- 🤖 **AI-powered content enhancement** — Enhance your resume content with AI using Google's Gemini for better ATS optimization and professional language. Get intelligent suggestions for Professional Summary, Job Descriptions, and more.
 - 🔐 **Privacy-first** — All data is encrypted before storage or export. No accounts, no tracking.
 - 🔄 **Editable preview** — Adjust formatting directly on your resume before exporting.
 - 📄 **Export options** — Download as PDF (via encrypted serverless function) or JSON.
@@ -36,8 +38,9 @@
 
 - **Frontend**: React, Tailwind CSS, [shadcn/ui](https://ui.shadcn.com/), [crypto-js](https://github.com/brix/crypto-js), [file-saver](https://github.com/eligrey/FileSaver.js)
 - **Backend**: Firebase Functions, Express.js
+- **AI Integration**: Google Gemini API
 - **PDF Rendering**: [puppeteer-core](https://github.com/puppeteer/puppeteer), [chrome-aws-lambda](https://github.com/alixaxel/chrome-aws-lambda)
-- **Security**: AES encryption + HMAC signature (for data integrity)
+- **Security**: AES encryption + HMAC signature (for data integrity), Rate limiting, Input validation
 
 ---
 
@@ -92,6 +95,7 @@ Create a `.env` file in the project root:
 
 ```
 VITE_EXPORT_API=https://your-cloud-function-url
+VITE_API_BASE_URL=https://your-cloud-function-url
 VITE_SHARED_SECRET=your-shared-secret
 VITE_SUPABASE_URL=https://your-supabase-url
 VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
@@ -100,7 +104,24 @@ VITE_UMAMI_SRC=https://cloud.umami.is/script.js
 VITE_UMAMI_WEBSITE_ID=your-umami-website-id
 ```
 
+### AI Enhancement Setup
+
+For AI content enhancement features, you'll need to set up Google Gemini API:
+
+1. Get a Gemini API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. For local development, add to `functions/.env`:
+   ```
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+3. For production, set Firebase Functions config:
+   ```bash
+   firebase functions:config:set gemini.api_key="your_gemini_api_key_here"
+   ```
+
+See [AI_SETUP.md](./AI_SETUP.md) for detailed setup instructions.
+
 - `VITE_EXPORT_API`: URL of your deployed PDF export function
+- `VITE_API_BASE_URL`: URL of your deployed function
 - `VITE_SHARED_SECRET`: Secret used for encrypting/signing PDF export payloads
 - `VITE_SUPABASE_URL`: Your Supabase project URL (for published resume storage)
 - `VITE_SUPABASE_ANON_KEY`: Your Supabase anon/public API key
@@ -196,6 +217,7 @@ For comprehensive documentation, guides, and development information, visit our 
 - **[Contributing Guidelines](./docs/CONTRIBUTING.md)** - How to contribute to the project
 - **[Template Guide](./docs/TEMPLATE_GUIDE.md)** - How to create and submit new resume templates
 - **[Firebase Functions](./docs/FUNCTIONS.md)** - Backend functions documentation and setup
+- **[AI Enhancement Guide](./docs/AI_ENHANCEMENT.md)** - AI-powered content enhancement feature documentation
 - **[SEO Guide](./docs/SEO_GUIDE.md)** - Search engine optimization guidelines
 - **[Security Checklist](./docs/PUBLIC_REPO_CHECKLIST.md)** - Security review and deployment checklist
 

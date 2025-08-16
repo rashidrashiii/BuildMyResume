@@ -89,6 +89,7 @@ interface ResumeState {
   editedHtml?: string;
   isPreviewEditing: boolean;
   hasUserStartedEditing: boolean; // New property to track if user has started entering data
+  enhancementCounts: Record<string, number>; // Track enhancement counts per field
 }
 
 type ResumeAction = 
@@ -114,7 +115,9 @@ type ResumeAction =
   | { type: 'RESET' }
   | { type: 'UPDATE_EDITED_CONTENT'; payload: { editedHtml: string } }
   | { type: 'SET_PREVIEW_EDITING'; payload: { isPreviewEditing: boolean } }
-  | { type: 'SET_USER_STARTED_EDITING' }; // New action to mark user has started editing
+  | { type: 'SET_USER_STARTED_EDITING' } // New action to mark user has started editing
+  | { type: 'INCREMENT_ENHANCEMENT_COUNT'; field: string }
+  | { type: 'RESET_ENHANCEMENT_COUNTS' };
 
 // Create empty initial data
 const emptyData: ResumeData = {
@@ -167,7 +170,8 @@ const initialState: ResumeState = {
   errors: {},
   editedHtml: undefined,
   isPreviewEditing: false,
-  hasUserStartedEditing: false // User hasn't started editing yet
+  hasUserStartedEditing: false, // User hasn't started editing yet
+  enhancementCounts: {} // Track enhancement counts per field
 };
 
 function resumeReducer(state: ResumeState, action: ResumeAction): ResumeState {
@@ -477,6 +481,21 @@ function resumeReducer(state: ResumeState, action: ResumeAction): ResumeState {
         hasUserStartedEditing: true
       };
       
+    case 'INCREMENT_ENHANCEMENT_COUNT':
+      return {
+        ...state,
+        enhancementCounts: {
+          ...state.enhancementCounts,
+          [action.field]: (state.enhancementCounts[action.field] || 0) + 1
+        }
+      };
+      
+    case 'RESET_ENHANCEMENT_COUNTS':
+      return {
+        ...state,
+        enhancementCounts: {}
+      };
+      
     default:
       return state;
   }
@@ -508,6 +527,8 @@ interface ResumeContextType {
   updateEditedContent: (editedHtml: string) => void;
   setPreviewEditing: (isPreviewEditing: boolean) => void;
   setUserStartedEditing: () => void;
+  incrementEnhancementCount: (field: string) => void;
+  resetEnhancementCounts: () => void;
   getPreviewData: () => ResumeData; // Function to get data for preview
 }
 
@@ -608,6 +629,14 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
     dispatch({ type: 'SET_USER_STARTED_EDITING' });
   }, []);
   
+  const incrementEnhancementCount = useCallback((field: string) => {
+    dispatch({ type: 'INCREMENT_ENHANCEMENT_COUNT', field });
+  }, []);
+  
+  const resetEnhancementCounts = useCallback(() => {
+    dispatch({ type: 'RESET_ENHANCEMENT_COUNTS' });
+  }, []);
+  
   const value: ResumeContextType = {
     state,
     dispatch,
@@ -634,6 +663,8 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
     updateEditedContent,
     setPreviewEditing,
     setUserStartedEditing,
+    incrementEnhancementCount,
+    resetEnhancementCounts,
     getPreviewData: () => getPreviewData(state.data, state.hasUserStartedEditing)
   };
   

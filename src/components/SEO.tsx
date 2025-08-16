@@ -19,9 +19,9 @@ interface SEOProps {
 }
 
 const SEO = ({
-  title = 'BuildMyResume - Free, Privacy-First Resume Builder | ATS-Friendly Templates',
-  description = 'Create professional, ATS-friendly resumes in minutes. 100% free, no sign-up required, end-to-end encrypted. Open source resume builder with beautiful templates for job seekers.',
-  keywords = 'resume builder, CV builder, ATS friendly resume, professional resume, free resume builder, privacy resume builder, open source resume, job application, career tools',
+  title = 'BuildMyResume - Free, AI-Powered Resume Builder | ATS-Friendly Templates',
+  description = 'Create professional, ATS-friendly resumes with AI-powered content enhancement. 100% free, no sign-up required, end-to-end encrypted. Open source resume builder with Google Gemini AI integration.',
+  keywords = 'AI resume builder, resume builder with AI, ATS friendly resume, professional resume, free resume builder, privacy resume builder, open source resume, job application, career tools, AI content enhancement, Google Gemini resume',
       image = `${import.meta.env.VITE_BASE_URL || 'https://buildmyresume.live'}/og-image.png`,
     url = import.meta.env.VITE_BASE_URL || 'https://buildmyresume.live',
   type = 'website',
