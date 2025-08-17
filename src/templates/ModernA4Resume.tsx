@@ -76,7 +76,7 @@ const ModernA4Resume = forwardRef<HTMLDivElement, { data: ResumeData }>(({ data 
           </h1>
           
           {/* Contact Information in modern grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm relative z-10 print-contact-grid">
             {data.email && (
               <div className="flex items-center gap-2">
                 <div

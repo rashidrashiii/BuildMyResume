@@ -1,6 +1,9 @@
 // Utility function to estimate A4 pages (copied from Editor)
 export const estimateA4PagesFromFullHtml = (htmlString: string) => {
-    const A4_HEIGHT_PX = 1123; // 11.69in * 96dpi
+    // A4 dimensions: 8.27" x 11.69"
+    // Puppeteer default margins: ~0.4" on all sides
+    // Available content height: 11.69" - (2 * 0.4") = 10.89" = 1045px at 96dpi
+    const A4_HEIGHT_PX = 1045; // Account for Puppeteer's default margins
     return new Promise<number>((resolve, reject) => {
         const iframe = document.createElement('iframe');
         iframe.style.position = 'absolute';

@@ -93,7 +93,9 @@ const ViewResume = () => {
                   color: #000; 
                   width: 794px;
                   margin: 0;
-                  padding: 0;
+                  padding: 20px;
+                  background-color: white;
+                  overflow: visible;
                 }
                 .page-break { page-break-before: always; }
               </style>

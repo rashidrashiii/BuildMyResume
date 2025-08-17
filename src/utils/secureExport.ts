@@ -57,6 +57,29 @@ export async function securePdfExport(rawContent: string) {
             .print-two-col > * {
               flex: 1 1 0% !important;
             }
+            .print-date-layout {
+              display: flex !important;
+              flex-direction: row !important;
+              justify-content: space-between !important;
+              align-items: flex-start !important;
+            }
+            .print-date-layout > .flex-1 {
+              flex: 1 1 0% !important;
+            }
+            .print-date-layout > .text-xs {
+              text-align: right !important;
+              margin-top: 0 !important;
+            }
+            .print-languages-grid {
+              display: grid !important;
+              grid-template-columns: 1fr 1fr !important;
+              gap: 1rem !important;
+            }
+            .print-contact-grid {
+              display: grid !important;
+              grid-template-columns: 1fr 1fr 1fr !important;
+              gap: 0.75rem !important;
+            }
             .avoid-break {
               break-inside: avoid !important;
               page-break-inside: avoid !important;

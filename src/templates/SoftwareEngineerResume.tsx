@@ -257,7 +257,7 @@ const SoftwareEngineerResume = forwardRef<HTMLDivElement, { data: ResumeData }>(
               {data.experiences.map((experience, index) => (
                 <div key={experience.id} className="relative">
                   <div className="ml-0">
-                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2 print-date-layout">
                       <div className="flex-1">
                         <h3 className="font-bold text-gray-900" style={{ fontSize: '15px' }}>
                           {experience.title}

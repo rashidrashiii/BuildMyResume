@@ -73,7 +73,7 @@ const TraditionalBusinessResume = forwardRef<HTMLDivElement, { data: ResumeData 
           {/* Contact Information Box */}
           <div 
             data-preserve="true"
-            className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs"
+            className="grid grid-cols-3 gap-2 text-xs"
             style={{ 
               border: '1px solid #000000', 
               padding: '10px',
@@ -187,8 +187,8 @@ const TraditionalBusinessResume = forwardRef<HTMLDivElement, { data: ResumeData 
                             }}
                           ></div>
                         )}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
-                          <div className="md:col-span-2">
+                        <div className="grid grid-cols-3 gap-2 mb-2">
+                          <div className="col-span-2">
                             <h3 className="font-bold text-gray-900" style={{ fontSize: '14px', margin: '0 0 4px 0' }}>
                               {experience.title}
                             </h3>
@@ -230,7 +230,7 @@ const TraditionalBusinessResume = forwardRef<HTMLDivElement, { data: ResumeData 
           )}
 
           {/* Two-column layout for remaining sections */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 print-two-col">
+          <div className="grid grid-cols-2 gap-4 print-two-col">
             {/* Left Column */}
             <div className="space-y-6">
               {/* Education */}

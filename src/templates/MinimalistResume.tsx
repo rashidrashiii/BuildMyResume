@@ -264,7 +264,7 @@ const MinimalistResume = forwardRef<HTMLDivElement, { data: ResumeData }>((props
             LANGUAGES
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 print-languages-grid">
             {data.languages.map((language) => (
               <div key={language.id} className="flex justify-between items-center">
                 <div>

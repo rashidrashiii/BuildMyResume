@@ -25,7 +25,7 @@ interface HistoryState {
 }
 
 const baseWidth = 794; // A4 width px
-const baseHeight = 1123; // A4 height px
+const baseHeight = 1045; // A4 height px (accounting for Puppeteer's default margins)
 const pagePadding = 0; // Padding inside each page
 const pageGap = 24; // Gap between pages
 
@@ -233,101 +233,132 @@ export const ResumePreview = ({
   const calculateRequiredPages = useCallback(() => {
     if (!editableRef.current && !data) return;
 
-    // Create measurement container with same styles
-    const tempDiv = document.createElement('div');
-    tempDiv.style.position = 'absolute';
-    tempDiv.style.left = '-9999px';
-    tempDiv.style.visibility = 'hidden';
-    tempDiv.style.width = `${baseWidth}px`;
-    tempDiv.style.padding = `${pagePadding}px`;
-    tempDiv.style.fontSize = '14px';
-    tempDiv.style.lineHeight = '1.5';
-    tempDiv.style.fontFamily = 'system-ui, -apple-system, sans-serif';
-    tempDiv.style.boxSizing = 'border-box';
+    const calculateWithIframe = async (content: string) => {
+      // Use the same method as PDF export for consistent page calculation
+      const A4_HEIGHT_PX = 1045; // Account for Puppeteer's default margins
+      
+      const htmlString = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { 
+              font-family: system-ui, -apple-system, sans-serif; 
+              font-size: 14px; 
+              line-height: 1.5; 
+              color: #000; 
+              width: 794px;
+              margin: 0;
+              padding: 20px;
+              background-color: white;
+              overflow: visible;
+            }
+            .page-break { page-break-before: always; }
+          </style>
+        </head>
+        <body>${content}</body>
+        </html>
+      `;
 
-    // Use appropriate content based on editing state
-    if (isEditing && editableRef.current) {
-      tempDiv.innerHTML = editableRef.current.innerHTML;
-    } else if (data.editedHtml) {
-      tempDiv.innerHTML = data.editedHtml;
-    } else {
-      // For template changes, we need to render the template component
-      const tempContainer = document.createElement('div');
-      tempContainer.style.width = `${baseWidth}px`;
-      tempContainer.style.padding = `${pagePadding}px`;
-      tempContainer.style.fontSize = '14px';
-      tempContainer.style.lineHeight = '1.5';
-      tempContainer.style.fontFamily = 'system-ui, -apple-system, sans-serif';
-      tempContainer.style.boxSizing = 'border-box';
-      
-      document.body.appendChild(tempContainer);
-      
-      // Create a React root and render the template
-      import('react-dom/client').then(({ createRoot }) => {
-        const root = createRoot(tempContainer);
-        root.render(<TemplateComponent data={data} />);
+      return new Promise<number>((resolve, reject) => {
+        const iframe = document.createElement('iframe');
+        iframe.style.position = 'absolute';
+        iframe.style.left = '-9999px';
+        iframe.style.top = '0';
+        iframe.style.width = '794px'; // A4 width
+        iframe.style.height = 'auto';
+        iframe.style.visibility = 'hidden';
+        document.body.appendChild(iframe);
         
-        // Wait for render to complete
-        setTimeout(() => {
-          tempDiv.innerHTML = tempContainer.innerHTML;
+        iframe.onload = () => {
+          try {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+            if (!iframeDoc) throw new Error("Failed to access iframe document");
+            const totalHeight = iframeDoc.body.scrollHeight;
+            document.body.removeChild(iframe);
+            const pageCount = Math.ceil(totalHeight / A4_HEIGHT_PX);
+            resolve(pageCount);
+          } catch (err) {
+            document.body.removeChild(iframe);
+            reject(err);
+          }
+        };
+        
+        iframe.srcdoc = htmlString;
+      });
+    };
+
+    const updatePageCount = async () => {
+      try {
+        let content = '';
+        
+        // Use appropriate content based on editing state
+        if (isEditing && editableRef.current) {
+          content = editableRef.current.innerHTML;
+        } else if (data.editedHtml) {
+          content = data.editedHtml;
+        } else {
+          // For template changes, we need to render the template component
+          const tempContainer = document.createElement('div');
+          tempContainer.style.width = `${baseWidth}px`;
+          tempContainer.style.padding = '20px';
+          tempContainer.style.fontSize = '14px';
+          tempContainer.style.lineHeight = '1.5';
+          tempContainer.style.fontFamily = 'system-ui, -apple-system, sans-serif';
+          tempContainer.style.boxSizing = 'border-box';
+          tempContainer.style.backgroundColor = 'white';
+          tempContainer.style.margin = '0';
+          tempContainer.style.color = '#000';
+          tempContainer.style.overflow = 'visible';
+          
+          document.body.appendChild(tempContainer);
+          
+          // Create a React root and render the template
+          const { createRoot } = await import('react-dom/client');
+          const root = createRoot(tempContainer);
+          root.render(<TemplateComponent data={data} />);
+          
+          // Wait for render to complete
+          await new Promise(resolve => setTimeout(resolve, 100));
+          
+          content = tempContainer.innerHTML;
           
           // Remove trailing <br> tags
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = content;
           while (tempDiv.lastChild && tempDiv.lastChild.nodeName === 'BR') {
             tempDiv.removeChild(tempDiv.lastChild);
           }
-
-          document.body.appendChild(tempDiv);
+          content = tempDiv.innerHTML;
           
-          // Calculate total content height including padding
-          const contentHeight = tempDiv.scrollHeight + (pagePadding * 2);
-          document.body.removeChild(tempDiv);
           document.body.removeChild(tempContainer);
           root.unmount();
+        }
 
-          const requiredPages = Math.max(1, Math.ceil(contentHeight / baseHeight));
-
-          if (requiredPages !== pageCount) {
-            setPageCount(requiredPages);
-            if (setPageCountProp) {
-              setPageCountProp(requiredPages);
-            }
-          }
-        }, 100);
-      }).catch(() => {
-        // Fallback if React DOM client import fails
-        document.body.removeChild(tempContainer);
-        const requiredPages = Math.max(1, Math.ceil((tempContainer.offsetHeight + (pagePadding * 2)) / baseHeight));
+        const requiredPages = await calculateWithIframe(content);
+        
         if (requiredPages !== pageCount) {
           setPageCount(requiredPages);
           if (setPageCountProp) {
             setPageCountProp(requiredPages);
           }
         }
-      });
-      
-      return;
-    }
-
-    // Remove trailing <br> tags
-    while (tempDiv.lastChild && tempDiv.lastChild.nodeName === 'BR') {
-      tempDiv.removeChild(tempDiv.lastChild);
-    }
-
-    document.body.appendChild(tempDiv);
-    
-    // Calculate total content height including padding
-    const contentHeight = tempDiv.scrollHeight + (pagePadding * 2);
-    document.body.removeChild(tempDiv);
-
-    const requiredPages = Math.max(1, Math.ceil(contentHeight / baseHeight));
-
-    if (requiredPages !== pageCount) {
-      setPageCount(requiredPages);
-      if (setPageCountProp) {
-        setPageCountProp(requiredPages);
+      } catch (error) {
+        console.error('Page calculation error:', error);
+        // Fallback to 1 page
+        if (pageCount !== 1) {
+          setPageCount(1);
+          if (setPageCountProp) {
+            setPageCountProp(1);
+          }
+        }
       }
-    }
-  }, [pageCount, setPageCountProp, isEditing, data]);
+    };
+
+    updatePageCount();
+  }, [pageCount, setPageCountProp, isEditing, data, baseWidth]);
 
   // Fit to width
   const fitToWidth = (containerWidth: number) => {

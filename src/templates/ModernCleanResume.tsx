@@ -110,7 +110,7 @@ const ModernCleanResume = forwardRef<HTMLDivElement, { data: ResumeData }>((prop
           <div className="space-y-3">
             {data.experiences.map((experience) => (
               <div key={experience.id}>
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-1">
+                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-1 print-date-layout">
                   <div className="flex-1">
                     <h3 className="text-sm font-semibold text-gray-900">
                       {experience.title}
@@ -144,7 +144,7 @@ const ModernCleanResume = forwardRef<HTMLDivElement, { data: ResumeData }>((prop
           <div className="space-y-3">
             {data.education.map((education) => (
               <div key={education.id}>
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start">
+                <div className="flex flex-col md:flex-row md:justify-between md:items-start print-date-layout">
                   <div className="flex-1">
                     <h3 className="text-sm font-semibold text-gray-900">
                       {education.degree}
@@ -194,7 +194,7 @@ const ModernCleanResume = forwardRef<HTMLDivElement, { data: ResumeData }>((prop
           </h2>
           <div className="space-y-2">
             {data.certifications.map((certification) => (
-              <div key={certification.id} className="flex flex-col md:flex-row md:justify-between md:items-start">
+              <div key={certification.id} className="flex flex-col md:flex-row md:justify-between md:items-start print-date-layout">
                 <div className="flex-1">
                   <h3 className="text-sm font-semibold text-gray-900">
                     {certification.name}
@@ -221,7 +221,7 @@ const ModernCleanResume = forwardRef<HTMLDivElement, { data: ResumeData }>((prop
           <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-4 pb-1 border-b-2 border-blue-600">
             Languages
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 print-languages-grid">
             {data.languages.map((language) => (
               <div key={language.id} className="flex justify-between items-center">
                 <div>

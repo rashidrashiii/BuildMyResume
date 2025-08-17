@@ -51,7 +51,10 @@ import sampleData from "@/data/sample.json";
 
 // Utility function to estimate A4 pages
   const estimateA4PagesFromFullHtml = (htmlString: string) => {
-  const A4_HEIGHT_PX = 1123; // 11.69in * 96dpi
+  // A4 dimensions: 8.27" x 11.69"
+  // Puppeteer default margins: ~0.4" on all sides
+  // Available content height: 11.69" - (2 * 0.4") = 10.89" = 1045px at 96dpi
+  const A4_HEIGHT_PX = 1045; // Account for Puppeteer's default margins
 
   return new Promise((resolve, reject) => {
     const iframe = document.createElement('iframe');
@@ -104,7 +107,7 @@ const Editor = () => {
   const [showFormatConfirm, setShowFormatConfirm] = useState(false);
 
   const baseWidth = 794; // A4 width in pixels
-  const baseHeight = 1123; // A4 height in pixels
+  const baseHeight = 1045; // A4 height in pixels (accounting for Puppeteer's default margins)
   const { state, setTemplate, dispatch, loadData, setPreviewEditing, getPreviewData, setUserStartedEditing } = useResume();
   const [searchParams] = useSearchParams();
   const resumeRef = useRef(null);
@@ -271,7 +274,9 @@ const Editor = () => {
                   color: #000; 
                   width: 794px;
                   margin: 0;
-                  padding: 0;
+                  padding: 20px;
+                  background-color: white;
+                  overflow: visible;
                 }
                 .page-break { page-break-before: always; }
               </style>
