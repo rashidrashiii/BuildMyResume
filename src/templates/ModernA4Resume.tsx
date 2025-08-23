@@ -201,7 +201,7 @@ const ModernA4Resume = forwardRef<HTMLDivElement, { data: ResumeData }>(({ data 
       )}
 
       {/* Work Experience */}
-      {data.experiences.length > 0 && (
+      {data.experiences.length > 0 && data.experiences.some(exp => exp.company || exp.title || exp.description || exp.startDate || exp.endDate) && (
         <section className="mb-5">
           <div className="flex items-center gap-3 mb-3">
             <h2 className="text-lg font-bold text-gray-900">PROFESSIONAL EXPERIENCE</h2>
@@ -277,7 +277,7 @@ const ModernA4Resume = forwardRef<HTMLDivElement, { data: ResumeData }>(({ data 
       )}
 
       {/* Education */}
-      {data.education.length > 0 && (
+      {data.education.length > 0 && data.education.some(edu => edu.school || edu.degree || edu.field || edu.startDate || edu.endDate) && (
         <section className="mb-5">
           <div className="flex items-center gap-3 mb-3">
             <h2 className="text-lg font-bold text-gray-900">EDUCATION</h2>

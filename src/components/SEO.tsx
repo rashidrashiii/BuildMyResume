@@ -20,8 +20,8 @@ interface SEOProps {
 
 const SEO = ({
   title = 'BuildMyResume - Free, AI-Powered Resume Builder | ATS-Friendly Templates',
-  description = 'Create professional, ATS-friendly resumes with AI-powered content enhancement. 100% free, no sign-up required, end-to-end encrypted. Open source resume builder with Google Gemini AI integration.',
-  keywords = 'AI resume builder, resume builder with AI, ATS friendly resume, professional resume, free resume builder, privacy resume builder, open source resume, job application, career tools, AI content enhancement, Google Gemini resume',
+  description = 'Create professional, ATS-optimized resumes with our free resume builder. Features 15+ templates, AI-powered content enhancement, and intelligent resume generation. No sign-up required, 100% free, and end-to-end encrypted.',
+  keywords = 'resume builder, free resume builder, ATS optimized resume, professional resume templates, CV builder, job application, career tools, resume maker, online resume builder, AI resume enhancement, privacy resume builder, open source resume, resume templates, PDF resume',
       image = `${import.meta.env.VITE_BASE_URL || 'https://buildmyresume.live'}/og-image.png`,
     url = import.meta.env.VITE_BASE_URL || 'https://buildmyresume.live',
   type = 'website',

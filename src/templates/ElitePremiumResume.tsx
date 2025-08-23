@@ -128,7 +128,7 @@ const ElitePremiumResume = forwardRef<HTMLDivElement, { data: ResumeData }>((pro
         )}
 
         {/* Professional Experience */}
-        {data.experiences.length > 0 && (
+        {data.experiences.length > 0 && data.experiences.some(exp => exp.company || exp.title || exp.description || exp.startDate || exp.endDate) && (
           <section className="mb-4">
             <div className="flex items-center mb-3">
               <h2 className="font-bold text-gray-900 mr-3" style={{ fontSize: '14px', letterSpacing: '0.5px' }}>
@@ -192,7 +192,7 @@ const ElitePremiumResume = forwardRef<HTMLDivElement, { data: ResumeData }>((pro
           {/* Left Column */}
           <div className="space-y-6">
             {/* Education */}
-            {data.education.length > 0 && (
+            {data.education.length > 0 && data.education.some(edu => edu.school || edu.degree || edu.field || edu.startDate || edu.endDate) && (
               <section>
                 <div className="flex items-center mb-3">
                   <h2 className="font-bold text-gray-900 mr-3" style={{ fontSize: '16px', letterSpacing: '0.5px' }}>

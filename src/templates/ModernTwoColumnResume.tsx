@@ -99,7 +99,7 @@ const ModernTwoColumnResume = forwardRef<HTMLDivElement, { data: ResumeData }>((
         {/* Left Column - Main Content */}
         <div className="space-y-4">
           {/* Work Experience */}
-          {data.experiences.length > 0 && (
+          {data.experiences.length > 0 && data.experiences.some(exp => exp.company || exp.title || exp.description || exp.startDate || exp.endDate) && (
             <section>
               <h2 className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
                 PROFESSIONAL EXPERIENCE
@@ -142,7 +142,7 @@ const ModernTwoColumnResume = forwardRef<HTMLDivElement, { data: ResumeData }>((
           )}
 
           {/* Education */}
-          {data.education.length > 0 && (
+          {data.education.length > 0 && data.education.some(edu => edu.school || edu.degree || edu.field || edu.startDate || edu.endDate) && (
             <section>
               <h2 className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
                 EDUCATION

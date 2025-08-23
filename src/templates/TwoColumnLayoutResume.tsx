@@ -63,72 +63,76 @@ const TwoColumnLayoutResume = forwardRef<HTMLDivElement, { data: ResumeData }>((
         {/* Left Column - Main Content */}
         <div className="space-y-6">
           {/* Experience Section */}
-          <section>
-            <h2 className="text-base font-black text-gray-900 mb-4 pb-2" style={{ borderBottom: '3px solid black' }}>
-              EXPERIENCE
-            </h2>
-            
-            <div className="space-y-4">
-              {resumeData.experiences?.map((experience) => (
-                <div key={experience.id} className="pb-3">
-                  <div className="mb-2">
-                    <h3 className="text-sm font-bold text-gray-900 mb-1">
-                      {experience.title}
-                    </h3>
-                    <p className="font-semibold mb-2" style={{ color: '#4ecdc4' }}>
-                      {experience.company}
-                    </p>
-                    <div className="flex items-center gap-4 text-xs text-gray-600">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="h-3 w-3" />
-                        <span>{formatDateRange(experience.startDate, experience.endDate, experience.current)}</span>
-                      </div>
-                      {experience.location && (
+          {resumeData.experiences && resumeData.experiences.length > 0 && resumeData.experiences.some(exp => exp.company || exp.title || exp.description || exp.startDate || exp.endDate) && (
+            <section>
+              <h2 className="text-base font-black text-gray-900 mb-4 pb-2" style={{ borderBottom: '3px solid black' }}>
+                EXPERIENCE
+              </h2>
+              
+              <div className="space-y-4">
+                {resumeData.experiences?.map((experience) => (
+                  <div key={experience.id} className="pb-3">
+                    <div className="mb-2">
+                      <h3 className="text-sm font-bold text-gray-900 mb-1">
+                        {experience.title}
+                      </h3>
+                      <p className="font-semibold mb-2" style={{ color: '#4ecdc4' }}>
+                        {experience.company}
+                      </p>
+                      <div className="flex items-center gap-4 text-xs text-gray-600">
                         <div className="flex items-center gap-2">
-                          <MapPin className="h-3 w-3" />
-                          <span>{experience.location}</span>
+                          <Calendar className="h-3 w-3" />
+                          <span>{formatDateRange(experience.startDate, experience.endDate, experience.current)}</span>
                         </div>
-                      )}
+                        {experience.location && (
+                          <div className="flex items-center gap-2">
+                            <MapPin className="h-3 w-3" />
+                            <span>{experience.location}</span>
+                          </div>
+                        )}
+                      </div>
                     </div>
+                    
+                    {experience.description && (
+                      <div className="text-xs text-gray-700 leading-relaxed pl-2">
+                        {experience.description.split('\n').map((line, index) => (
+                          <div key={index} className="mb-1">
+                            {line}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                  
-                  {experience.description && (
-                    <div className="text-xs text-gray-700 leading-relaxed pl-2">
-                      {experience.description.split('\n').map((line, index) => (
-                        <div key={index} className="mb-1">
-                          {line}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </section>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Education Section */}
-          <section>
-            <h2 className="text-base font-black text-gray-900 mb-4 pb-2" style={{ borderBottom: '3px solid black' }}>
-              EDUCATION
-            </h2>
-            
-            <div className="space-y-3">
-              {resumeData.education?.map((education) => (
-                <div key={education.id} className="pb-2">
-                  <h3 className="text-sm font-bold text-gray-900 mb-1">
-                    {education.degree}
-                  </h3>
-                  <p className="font-semibold mb-2" style={{ color: '#4ecdc4' }}>
-                    {education.school}
-                  </p>
-                  <div className="flex items-center gap-2 text-xs text-gray-600">
-                    <Calendar className="h-3 w-3" />
-                    <span>{formatDateRange(education.startDate, education.endDate, education.current)}</span>
+          {resumeData.education && resumeData.education.length > 0 && resumeData.education.some(edu => edu.school || edu.degree || edu.field || edu.startDate || edu.endDate) && (
+            <section>
+              <h2 className="text-base font-black text-gray-900 mb-4 pb-2" style={{ borderBottom: '3px solid black' }}>
+                EDUCATION
+              </h2>
+              
+              <div className="space-y-3">
+                {resumeData.education?.map((education) => (
+                  <div key={education.id} className="pb-2">
+                    <h3 className="text-sm font-bold text-gray-900 mb-1">
+                      {education.degree}
+                    </h3>
+                    <p className="font-semibold mb-2" style={{ color: '#4ecdc4' }}>
+                      {education.school}
+                    </p>
+                    <div className="flex items-center gap-2 text-xs text-gray-600">
+                      <Calendar className="h-3 w-3" />
+                      <span>{formatDateRange(education.startDate, education.endDate, education.current)}</span>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </section>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
 
         {/* Right Column - Sidebar */}

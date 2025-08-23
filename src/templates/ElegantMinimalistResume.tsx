@@ -1,19 +1,9 @@
 import { forwardRef } from "react";
 import { Mail, Phone, MapPin, Globe, Linkedin, Star } from "lucide-react";
 import { ResumeData } from "@/contexts/ResumeContext";
+import { formatDate, formatDateRange } from "@/utils/dateUtils";
 
 const ElegantMinimalistResume = forwardRef<HTMLDivElement, { data: ResumeData }>(({ data }, ref) => {
-  const formatDate = (dateString: string) => {
-    if (!dateString) return '';
-    const date = new Date(dateString + '-01');
-    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-  };
-
-  const formatDateRange = (startDate: string, endDate: string, current: boolean) => {
-    const start = formatDate(startDate);
-    const end = current ? 'Present' : formatDate(endDate);
-    return `${start} - ${end}`;
-  };
 
   const renderStars = (proficiency: string) => {
     // Calculate rating based on proficiency level
@@ -121,7 +111,7 @@ const ElegantMinimalistResume = forwardRef<HTMLDivElement, { data: ResumeData }>
       )}
 
       {/* Work Experience */}
-      {data.experiences.length > 0 && (
+      {data.experiences.length > 0 && data.experiences.some(exp => exp.company || exp.title || exp.description || exp.startDate || exp.endDate) && (
         <section className="mb-4">
           <div className="flex items-center mb-2">
             <div
@@ -180,7 +170,7 @@ const ElegantMinimalistResume = forwardRef<HTMLDivElement, { data: ResumeData }>
       )}
 
       {/* Education */}
-      {data.education.length > 0 && (
+      {data.education.length > 0 && data.education.some(edu => edu.school || edu.degree || edu.field || edu.startDate || edu.endDate) && (
         <section className="mb-5">
           <div className="flex items-center mb-3">
             <div

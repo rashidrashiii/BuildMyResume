@@ -1,19 +1,9 @@
 import { forwardRef } from "react";
 import { Mail, Phone, MapPin, Globe, Linkedin, Star } from "lucide-react";
 import { ResumeData } from "@/contexts/ResumeContext";
+import { formatDate, formatDateRange } from "@/utils/dateUtils";
 
 const CreativeDesignResume = forwardRef<HTMLDivElement, { data: ResumeData }>(({ data }, ref) => {
-  const formatDate = (dateString: string) => {
-    if (!dateString) return '';
-    const date = new Date(dateString + '-01');
-    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-  };
-
-  const formatDateRange = (startDate: string, endDate: string, current: boolean) => {
-    const start = formatDate(startDate);
-    const end = current ? 'Present' : formatDate(endDate);
-    return `${start} - ${end}`;
-  };
 
   const renderStars = (proficiency: string) => {
     // Calculate rating based on proficiency level
@@ -57,7 +47,7 @@ const CreativeDesignResume = forwardRef<HTMLDivElement, { data: ResumeData }>(({
           <h1 className="text-lg font-bold mb-1 uppercase tracking-wide">
             {data.firstName} {data.lastName}
           </h1>
-          {data.experiences && data.experiences.length > 0 && (
+          {data.experiences && data.experiences.length > 0 && data.experiences.some(exp => exp.company || exp.title || exp.description || exp.startDate || exp.endDate) && (
             <p className="text-sm mb-2">
               {data.experiences[0].title}
             </p>
@@ -108,7 +98,7 @@ const CreativeDesignResume = forwardRef<HTMLDivElement, { data: ResumeData }>(({
           )}
 
           {/* Work Experience */}
-          {data.experiences.length > 0 && (
+          {data.experiences.length > 0 && data.experiences.some(exp => exp.company || exp.title || exp.description || exp.startDate || exp.endDate) && (
             <section>
               <h2 className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide">
                 EXPERIENCE
@@ -206,7 +196,7 @@ const CreativeDesignResume = forwardRef<HTMLDivElement, { data: ResumeData }>(({
           )}
 
           {/* Education */}
-          {data.education.length > 0 && (
+          {data.education.length > 0 && data.education.some(edu => edu.school || edu.degree || edu.field || edu.startDate || edu.endDate) && (
             <section>
               <h2 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">
                 EDUCATION

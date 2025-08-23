@@ -150,7 +150,7 @@ const TraditionalBusinessResume = forwardRef<HTMLDivElement, { data: ResumeData 
           )}
 
           {/* Professional Experience */}
-          {data.experiences.length > 0 && (
+          {data.experiences.length > 0 && data.experiences.some(exp => exp.company || exp.title || exp.description || exp.startDate || exp.endDate) && (
             <section className="mb-6">
               <div 
                 data-preserve="true"
@@ -234,7 +234,7 @@ const TraditionalBusinessResume = forwardRef<HTMLDivElement, { data: ResumeData 
             {/* Left Column */}
             <div className="space-y-6">
               {/* Education */}
-              {data.education.length > 0 && (
+              {data.education.length > 0 && data.education.some(edu => edu.school || edu.degree || edu.field || edu.startDate || edu.endDate) && (
                 <section>
                   <div 
                     data-preserve="true"

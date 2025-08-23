@@ -244,7 +244,7 @@ const SoftwareEngineerResume = forwardRef<HTMLDivElement, { data: ResumeData }>(
         )}
 
         {/* Professional Experience */}
-        {data.experiences.length > 0 && (
+        {data.experiences.length > 0 && data.experiences.some(exp => exp.company || exp.title || exp.description || exp.startDate || exp.endDate) && (
           <section className="mb-6">
             <div className="flex items-center gap-2 mb-4">
               <Code className="h-5 w-5 text-purple-500" />
@@ -306,7 +306,7 @@ const SoftwareEngineerResume = forwardRef<HTMLDivElement, { data: ResumeData }>(
           {/* Left Column */}
           <div className="space-y-6">
             {/* Education */}
-            {data.education.length > 0 && (
+            {data.education.length > 0 && data.education.some(edu => edu.school || edu.degree || edu.field || edu.startDate || edu.endDate) && (
               <section>
                 <div className="flex items-center gap-2 mb-3">
                   <div 

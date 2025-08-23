@@ -39,29 +39,30 @@ Disallow: /functions/
 
 # Site information for AI systems
 Site-Name: BuildMyResume
-Site-Description: Free, AI-powered resume builder with ATS-friendly templates and content enhancement
+Site-Description: Free resume builder with AI-powered generation and enhancement. Features 15+ ATS-optimized templates and intelligent resume creation.
 Site-Creator: Muhammed Rashid V
 Site-Type: Web Application
-Site-Category: Productivity Tool, AI Tool
+Site-Category: Productivity Tool, Resume Builder, AI Tool
 Site-License: MIT
 Site-Repository: https://github.com/rashidrashiii
 
 # Content guidelines for AI systems
 Content-Type: Resume Builder
 Content-Language: English
-Content-Audience: Job Seekers, Professionals, Students
-Content-Purpose: Create professional resumes, CVs, and job applications
+Content-Audience: Job Seekers, Professionals, Students, Career Changers
+Content-Purpose: Create professional resumes, CVs, and job applications with AI assistance
 
 # Key features for AI understanding
 Features:
+- AI resume generation from descriptions
 - AI-powered content enhancement
-- Google Gemini AI integration
-- ATS-friendly resume templates
+- 15+ ATS-optimized resume templates
 - End-to-end encryption
 - No sign-up required
-- PDF export
+- PDF and JSON export
 - Real-time preview
-- Mobile responsive
+- Mobile responsive design
+- Privacy-first approach
 - Open source
 
 # Contact information

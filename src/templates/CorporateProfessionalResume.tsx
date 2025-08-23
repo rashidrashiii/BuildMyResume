@@ -96,7 +96,7 @@ const CorporateProfessionalResume = forwardRef<HTMLDivElement, { data: ResumeDat
         )}
 
         {/* Professional Experience */}
-        {data.experiences.length > 0 && (
+        {data.experiences.length > 0 && data.experiences.some(exp => exp.company || exp.title || exp.description || exp.startDate || exp.endDate) && (
           <section>
             <h2 className="text-sm font-bold text-gray-900 mb-4 uppercase tracking-wide">
               Professional Experience
@@ -138,7 +138,7 @@ const CorporateProfessionalResume = forwardRef<HTMLDivElement, { data: ResumeDat
           {/* Left Column */}
           <div className="space-y-6">
             {/* Education */}
-            {data.education.length > 0 && (
+            {data.education.length > 0 && data.education.some(edu => edu.school || edu.degree || edu.field || edu.startDate || edu.endDate) && (
               <section>
                 <h2 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide">
                   Education

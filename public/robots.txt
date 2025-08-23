@@ -1,5 +1,6 @@
 # BuildMyResume Robots.txt
 # Allow all search engines to crawl the site
+# Updated: January 23, 2025
 
 User-agent: *
 Allow: /

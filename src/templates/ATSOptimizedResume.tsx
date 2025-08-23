@@ -186,7 +186,7 @@ const ATSOptimizedResume = forwardRef<HTMLDivElement, { data: ResumeData }>(({ d
         )}
 
         {/* Work History */}
-        {data.experiences.length > 0 && (
+        {data.experiences.length > 0 && data.experiences.some(exp => exp.company || exp.title || exp.description || exp.startDate || exp.endDate) && (
           <>
             <div
               style={{
@@ -281,7 +281,7 @@ const ATSOptimizedResume = forwardRef<HTMLDivElement, { data: ResumeData }>(({ d
         )}
 
         {/* Education */}
-        {data.education.length > 0 && (
+        {data.education.length > 0 && data.education.some(edu => edu.school || edu.degree || edu.field || edu.startDate || edu.endDate) && (
           <>
             <div
               style={{

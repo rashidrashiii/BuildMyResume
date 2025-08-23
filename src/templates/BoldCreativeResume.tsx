@@ -245,7 +245,7 @@ const BoldCreativeResume = forwardRef<HTMLDivElement, { data: ResumeData }>(({ d
         )}
 
         {/* Experience with Timeline */}
-        {data.experiences.length > 0 && (
+        {data.experiences.length > 0 && data.experiences.some(exp => exp.company || exp.title || exp.description || exp.startDate || exp.endDate) && (
           <section className="mb-6">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2" style={{ color: '#1e40af' }}>
               <div
@@ -312,7 +312,7 @@ const BoldCreativeResume = forwardRef<HTMLDivElement, { data: ResumeData }>(({ d
         )}
 
         {/* Education */}
-        {data.education.length > 0 && (
+        {data.education.length > 0 && data.education.some(edu => edu.school || edu.degree || edu.field || edu.startDate || edu.endDate) && (
           <section className="mb-6">
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2" style={{ color: '#1e40af' }}>
               <div

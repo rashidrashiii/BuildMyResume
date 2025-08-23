@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { FileText, ArrowLeft, Download, Eye, ZoomIn, ZoomOut, Maximize2, Settings, ChevronDown, ChevronRight, Palette, Edit3, Save, AlertTriangle } from "lucide-react";
+import { FileText, ArrowLeft, Download, Eye, ZoomIn, ZoomOut, Maximize2, Settings, ChevronDown, ChevronRight, Palette, Edit3, Save, AlertTriangle, Sparkles } from "lucide-react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { AppNavigation } from "@/components/AppNavigation";
 import { templates } from "@/templates";
@@ -10,7 +10,7 @@ import ExportButtons from "@/components/ExportButtons";
 import { PublishButton } from "@/components/PublishButton";
 import ResumeForm from "@/components/ResumeForm";
 import TemplateSelector from "@/components/TemplateSelector";
-import { useResume } from "@/contexts/ResumeContext";
+import { useResume, ResumeData } from "@/contexts/ResumeContext";
 import { useToast } from "@/hooks/use-toast";
 import { useReactToPrint } from "react-to-print";
 import FullScreenLoader from "@/components/FullScreenLoader";
@@ -127,9 +127,29 @@ const Editor = () => {
 
   // Helper function to check if form has any data
   const hasFormData = () => {
-    return !!(state.data.firstName || state.data.lastName || state.data.email || 
-              state.data.phone || state.data.summary || state.data.experiences.length > 0 || 
-              state.data.education.length > 0 || state.data.skills.length > 0);
+    // Check basic fields
+    const hasBasicData = !!(state.data.firstName || state.data.lastName || state.data.email || 
+                           state.data.phone || state.data.summary);
+    
+    // Check if experiences have actual content (not just empty objects)
+    const hasExperienceData = state.data.experiences.some(exp => 
+      exp.company || exp.title || exp.description || exp.startDate || exp.endDate
+    );
+    
+    // Check if education has actual content (not just empty objects)
+    const hasEducationData = state.data.education.some(edu => 
+      edu.school || edu.degree || edu.field || edu.startDate || edu.endDate
+    );
+    
+    // Check if there are actual skills
+    const hasSkillsData = state.data.skills.length > 0;
+    
+    // Check other sections
+    const hasOtherData = state.data.certifications.length > 0 || 
+                        state.data.languages.length > 0 || 
+                        state.data.customSections.length > 0;
+    
+    return hasBasicData || hasExperienceData || hasEducationData || hasSkillsData || hasOtherData;
   };
 
   // Helper function to get data for preview
@@ -141,11 +161,15 @@ const Editor = () => {
     return {
       ...state.data,
       ...sampleData,
+      education: sampleData.education.map(edu => ({
+        ...edu,
+        field: (edu as any).field || '' // Ensure field property exists
+      })),
       languages: sampleData.languages.map(lang => ({
         ...lang,
         proficiency: lang.proficiency as "Native" | "Conversational" | "Basic" | "Fluent"
       }))
-    };
+    } as ResumeData;
   };
 
   // Memoized preview data to prevent unnecessary re-renders
@@ -677,17 +701,7 @@ const Editor = () => {
             </TabsList>
 
             <TabsContent value="edit" className="mt-0">
-              <div className="py-4">
-                {!hasFormData() && (
-                  <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                    <div className="flex items-start space-x-2">
-                      <span className="text-blue-600 text-sm">💡</span>
-                      <div className="text-sm text-blue-800">
-                        <strong>Tip:</strong> The preview shows example data. Start typing to see your own information!
-                      </div>
-                    </div>
-                  </div>
-                )}
+              <div className="py-2">
                 {isFormattingModeEnabled && (
                   <div className="mb-4 p-4 bg-orange-50 border border-orange-200 rounded-lg">
                     <div className="flex items-start space-x-3">
@@ -718,7 +732,12 @@ const Editor = () => {
             </TabsContent>
 
             <TabsContent value="preview" className="mt-0">
-              <div className="py-4">
+              <div className="pt-0 pb-1">
+                {!hasFormData() && (
+                  <div className="mb-2 w-full px-3 py-2 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-700 rounded-lg text-xs text-blue-700 dark:text-blue-300">
+                    <strong>Preview:</strong> Example data shown - start typing in the form to see your resume.
+                  </div>
+                )}
                 <ResumePreview
                   data={memoizedPreviewData}
                   TemplateComponent={TemplateComponent}
@@ -776,25 +795,32 @@ const Editor = () => {
           <div className="w-1/2 border-r bg-muted/20">
             <div className="h-full overflow-y-auto">
               <div className="p-6">
-                <div className="mb-6">
-                  <h2 className="text-2xl font-bold mb-2">Build Your Resume</h2>
+                <div className="mb-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <h2 className="text-2xl font-bold">Build Your Resume</h2>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 border-blue-200 dark:border-blue-700 hover:from-blue-100 hover:to-purple-100 dark:hover:from-blue-900/30 dark:hover:to-purple-900/30 text-blue-700 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-200"
+                      disabled={isFormattingModeEnabled}
+                      onClick={() => {
+                        // This will be handled by the AIAssistedForm component
+                        const aiButton = document.querySelector('[data-ai-button]') as HTMLButtonElement;
+                        if (aiButton) aiButton.click();
+                      }}
+                    >
+                      <Sparkles className="h-4 w-4 mr-2" />
+                      AI Resume Creator
+                    </Button>
+                  </div>
                   <p className="text-muted-foreground">
                     Fill in your information below and see your resume update in real-time.
                   </p>
-                  {!hasFormData() && (
-                    <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                      <div className="flex items-start space-x-2">
-                        <span className="text-blue-600 text-sm">💡</span>
-                        <div className="text-sm text-blue-800">
-                          <strong>Tip:</strong> The preview shows example data. Start typing in any field to see your own information appear!
-                        </div>
-                      </div>
-                    </div>
-                  )}
+
                 </div>
 
                 {/* Collapsible Template Selector - Desktop Only */}
-                <Collapsible open={isTemplatesSectionOpen} onOpenChange={setIsTemplatesSectionOpen} className="mb-8">
+                <Collapsible open={isTemplatesSectionOpen} onOpenChange={setIsTemplatesSectionOpen} className="mb-4">
                   <div className="border rounded-lg bg-card overflow-hidden">
                     <CollapsibleTrigger asChild>
                       <Button
@@ -828,7 +854,7 @@ const Editor = () => {
 
                 {/* Formatting Mode Warning */}
                 {isFormattingModeEnabled && (
-                  <div className="mb-6 p-4 bg-orange-50 border border-orange-200 rounded-lg">
+                  <div className="mb-4 p-3 bg-orange-50 border border-orange-200 rounded-lg">
                     <div className="flex items-start space-x-3">
                       <AlertTriangle className="h-5 w-5 text-orange-600 mt-0.5 flex-shrink-0" />
                       <div>
@@ -862,25 +888,31 @@ const Editor = () => {
           {/* Right Panel - Preview */}
           <div className="w-1/2 bg-background">
             <div className="h-full overflow-y-auto">
-              <div className="p-6 h-full flex flex-col">
-                <div className="flex items-center justify-between mb-6">
-                  <div>
-                    <h2 className="text-2xl font-bold">Live Preview</h2>
-                    <p className="text-muted-foreground">
-                      {isEditing ? "Edit your resume directly" : "See how your resume looks as you type."}
-                    </p>
+              <div className="p-4 h-full flex flex-col">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <h2 className="text-xl font-bold">Live Preview</h2>
+                    <span className="text-xs text-muted-foreground px-2 py-1 bg-muted rounded-full">
+                      {isEditing ? "Edit Mode" : "View Mode"}
+                    </span>
                   </div>
-                  <div className="flex space-x-2">
-                    <Button variant="outline" size="sm" onClick={exportToPDF}>
-                      <Download className="h-4 w-4 mr-2" />
+                  <div className="flex space-x-1">
+                    <Button variant="outline" size="sm" onClick={exportToPDF} className="h-8 px-2">
+                      <Download className="h-3 w-3 mr-1" />
                       PDF
                     </Button>
-                    <Button variant="outline" size="sm" onClick={exportToDocx}>
-                      <Download className="h-4 w-4 mr-2" />
+                    <Button variant="outline" size="sm" onClick={exportToDocx} className="h-8 px-2">
+                      <Download className="h-3 w-3 mr-1" />
                       DOCX
                     </Button>
                   </div>
                 </div>
+
+                {!hasFormData() && (
+                  <div className="mb-3 w-full px-3 py-2 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-700 rounded-lg text-xs text-blue-700 dark:text-blue-300">
+                    <strong>Preview:</strong> Example data shown - start typing in the form to see your resume.
+                  </div>
+                )}
 
                 <ResumePreview
                   data={memoizedPreviewData}

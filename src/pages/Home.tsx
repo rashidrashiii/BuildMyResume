@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { FileText, Shield, Zap, Github, ArrowRight, CheckCircle, Star, Play, Monitor, Smartphone, Users, GitFork, Heart, Sparkles, Bot } from "lucide-react";
+import { FileText, Shield, Zap, Github, ArrowRight, CheckCircle, Star, Play, Monitor, Smartphone, Users, GitFork, Heart, Sparkles, Bot, Wand2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { AppNavigation } from "@/components/AppNavigation";
 import Footer from "@/components/Footer";
@@ -24,6 +24,7 @@ const Home = () => {
     
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
+  
   const features = [
     {
       icon: <Shield className="h-8 w-8" />,
@@ -31,14 +32,19 @@ const Home = () => {
       description: "End-to-end encrypted. No accounts. Your data stays yours — always."
     },
     {
-      icon: <Zap className="h-8 w-8" />,
-      title: "AI-Powered Enhancement",
-      description: "Intelligent content enhancement with Google Gemini AI for professional, ATS-friendly resumes."
-    },
-    {
       icon: <FileText className="h-8 w-8" />,
       title: "Professional Templates",
-      description: "ATS-friendly templates designed to make you stand out."
+      description: "ATS-friendly templates designed to make you stand out in any industry."
+    },
+    {
+      icon: <Zap className="h-8 w-8" />,
+      title: "AI-Powered Enhancement",
+      description: "Intelligent content enhancement with advanced AI for professional, ATS-friendly resumes."
+    },
+    {
+      icon: <Wand2 className="h-8 w-8" />,
+      title: "AI Resume Generation",
+      description: "Create complete resumes from a simple description. AI generates all sections including experience, education, skills, and more."
     },
     {
       icon: <Github className="h-8 w-8" />,
@@ -50,8 +56,9 @@ const Home = () => {
 
   const benefits = [
     "No sign-up required",
-    "AI-powered enhancement",
     "ATS-friendly templates",
+    "AI-powered enhancement",
+    "AI resume generation",
     "End-to-end encrypted",
     "Export to PDF & JSON",
     "Free forever"
@@ -60,9 +67,9 @@ const Home = () => {
   return (
     <>
       <SEO 
-        title="Free AI-Powered Resume Builder - Create Professional ATS-Friendly Resumes"
-        description="Build professional, ATS-friendly resumes with AI-powered content enhancement. Free resume builder with Google Gemini AI integration. No sign-up required, end-to-end encrypted, and 100% free forever."
-        keywords="AI resume builder, free resume builder, ATS friendly resume, professional resume templates, CV builder, job application, career tools, resume maker, online resume builder, AI content enhancement, Google Gemini resume"
+        title="Free Resume Builder - Create Professional ATS-Friendly Resumes"
+        description="Build professional, ATS-friendly resumes with our privacy-first resume builder. Features AI-powered enhancement, multiple templates, and no sign-up required. 100% free, end-to-end encrypted, and open source."
+        keywords="resume builder, free resume builder, ATS friendly resume, professional resume templates, CV builder, job application, career tools, resume maker, online resume builder, AI resume enhancement, privacy resume builder"
         url={`${import.meta.env.VITE_BASE_URL || 'https://buildmyresume.live'}`}
         image={`${import.meta.env.VITE_BASE_URL || 'https://buildmyresume.live'}/og-image.png`}
       />
@@ -76,7 +83,7 @@ const Home = () => {
           <div className="text-center space-y-8">
             <div className="space-y-4">
               <Badge variant="secondary" className="text-sm px-4 py-2">
-                🚀 Open Source Resume Builder
+                🚀 Free Resume Builder
               </Badge>
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
                 Build Your Perfect Resume
@@ -85,9 +92,7 @@ const Home = () => {
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Create professional, ATS-friendly resumes with our privacy-first, 
-                AI-powered resume builder. Enhanced with Google Gemini AI for better content. 
-                No sign-up required, completely free.
+                Create professional, ATS-optimized resumes with our free resume builder. Features 15+ templates, AI-powered content enhancement, and intelligent resume generation. No sign-up required, 100% free, and end-to-end encrypted.
               </p>
             </div>
 
@@ -150,7 +155,7 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
               {features.map((feature, index) => (
                 <Card key={index} className="text-center border-0 shadow-card hover:shadow-float transition-all duration-300">
                   <CardHeader>
@@ -169,14 +174,181 @@ const Home = () => {
             </div>
           </section>
 
-          {/* AI Enhancement Section */}
+          {/* AI Resume Generation Showcase Section */}
+          <section className="py-16 sm:py-20 lg:py-24 relative overflow-hidden">
+            
+            <div className="relative">
+              <div className="text-center space-y-4 mb-16">
+                <Badge variant="secondary" className="text-sm px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border-blue-200 dark:border-blue-700 text-blue-700 dark:text-blue-300">
+                  ✨ AI-Powered Innovation
+                </Badge>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+                  Create Your Resume
+                  <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                    With AI Magic
+                  </span>
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                  Simply describe your background and watch AI transform it into a complete, professional resume. 
+                  No more staring at blank forms - let artificial intelligence do the heavy lifting.
+                </p>
+              </div>
+
+              <div className="max-w-6xl mx-auto">
+                {/* Main Showcase Card */}
+                <Card className="border-0 shadow-2xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-indigo-500/5" />
+                  <CardContent className="p-8 lg:p-12 relative">
+                                         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+                       
+                       {/* Left Side - Input Example */}
+                       <div className="space-y-6">
+                         <div className="space-y-4">
+                           <div className="flex items-center gap-3">
+                             <div className="w-3 h-3 bg-red-500 rounded-full" />
+                             <div className="w-3 h-3 bg-yellow-500 rounded-full" />
+                             <div className="w-3 h-3 bg-green-500 rounded-full" />
+                             <span className="text-sm text-muted-foreground ml-2">AI Resume Creator</span>
+                           </div>
+                           <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                             <p className="text-sm text-muted-foreground mb-2">Tell us about yourself:</p>
+                             <div className="space-y-2 text-sm">
+                               <div className="bg-white dark:bg-gray-700 rounded px-3 py-2 border border-gray-200 dark:border-gray-600">
+                                 <span className="text-blue-600 dark:text-blue-400">Software engineer</span> with 5 years experience in React and Node.js...
+                               </div>
+                               <div className="bg-white dark:bg-gray-700 rounded px-3 py-2 border border-gray-200 dark:border-gray-600">
+                                 Worked at <span className="text-green-600 dark:text-green-400">Google</span> and <span className="text-green-600 dark:text-green-400">Microsoft</span>...
+                               </div>
+                               <div className="bg-white dark:bg-gray-700 rounded px-3 py-2 border border-gray-200 dark:border-gray-600">
+                                 Master's degree in <span className="text-purple-600 dark:text-purple-400">Computer Science</span> from Stanford...
+                               </div>
+                             </div>
+                           </div>
+                         </div>
+                         
+                         <div className="flex items-center justify-center">
+                           <div className="relative">
+                             <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center animate-pulse">
+                               <Wand2 className="h-8 w-8 text-white" />
+                             </div>
+                             <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 to-purple-600/20 rounded-full blur-lg animate-pulse" />
+                           </div>
+                         </div>
+                       </div>
+
+                       {/* Right Side - Output Preview */}
+                       <div className="space-y-6">
+                         <div className="space-y-4">
+                           <div className="flex items-center gap-3">
+                             <div className="w-3 h-3 bg-red-500 rounded-full" />
+                             <div className="w-3 h-3 bg-yellow-500 rounded-full" />
+                             <div className="w-3 h-3 bg-green-500 rounded-full" />
+                             <span className="text-sm text-muted-foreground ml-2">Generated Resume</span>
+                           </div>
+                           <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700 shadow-lg">
+                            <div className="space-y-3">
+                              <div className="border-b border-gray-200 dark:border-gray-600 pb-2">
+                                <h3 className="font-semibold text-lg">John Doe</h3>
+                                <p className="text-sm text-muted-foreground">Software Engineer</p>
+                              </div>
+                              <div className="space-y-2">
+                                <div className="flex items-center gap-2">
+                                  <div className="w-2 h-2 bg-blue-500 rounded-full" />
+                                  <span className="text-sm font-medium">Experience</span>
+                                </div>
+                                <div className="ml-4 space-y-1">
+                                  <p className="text-sm"><strong>Senior Software Engineer</strong> at Google</p>
+                                  <p className="text-xs text-muted-foreground">2020 - Present</p>
+                                </div>
+                                <div className="ml-4 space-y-1">
+                                  <p className="text-sm"><strong>Software Engineer</strong> at Microsoft</p>
+                                  <p className="text-xs text-muted-foreground">2018 - 2020</p>
+                                </div>
+                              </div>
+                              <div className="space-y-2">
+                                <div className="flex items-center gap-2">
+                                  <div className="w-2 h-2 bg-green-500 rounded-full" />
+                                  <span className="text-sm font-medium">Education</span>
+                                </div>
+                                <div className="ml-4">
+                                  <p className="text-sm"><strong>Master's in Computer Science</strong></p>
+                                  <p className="text-xs text-muted-foreground">Stanford University, 2018</p>
+                                </div>
+                              </div>
+                              <div className="space-y-2">
+                                <div className="flex items-center gap-2">
+                                  <div className="w-2 h-2 bg-purple-500 rounded-full" />
+                                  <span className="text-sm font-medium">Skills</span>
+                                </div>
+                                <div className="ml-4 flex flex-wrap gap-1">
+                                  <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">React</span>
+                                  <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">Node.js</span>
+                                  <span className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">TypeScript</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Feature Highlights */}
+                    <div className="mt-12 grid md:grid-cols-3 gap-6">
+                      <div className="text-center space-y-3">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-xl flex items-center justify-center mx-auto">
+                          <Sparkles className="h-6 w-6 text-blue-600" />
+                        </div>
+                        <h4 className="font-semibold">Complete Generation</h4>
+                        <p className="text-sm text-muted-foreground">AI creates all sections including experience, education, skills, and custom content</p>
+                      </div>
+                      <div className="text-center space-y-3">
+                        <div className="w-12 h-12 bg-gradient-to-br from-purple-500/10 to-purple-600/10 rounded-xl flex items-center justify-center mx-auto">
+                          <Shield className="h-6 w-6 text-purple-600" />
+                        </div>
+                        <h4 className="font-semibold">Privacy First</h4>
+                        <p className="text-sm text-muted-foreground">Your data is processed securely with end-to-end encryption and never stored</p>
+                      </div>
+                      <div className="text-center space-y-3">
+                        <div className="w-12 h-12 bg-gradient-to-br from-green-500/10 to-green-600/10 rounded-xl flex items-center justify-center mx-auto">
+                          <CheckCircle className="h-6 w-6 text-green-600" />
+                        </div>
+                        <h4 className="font-semibold">ATS Optimized</h4>
+                        <p className="text-sm text-muted-foreground">Generated content is optimized for Applicant Tracking Systems</p>
+                      </div>
+                    </div>
+
+                    {/* CTA Button */}
+                    <div className="mt-8 text-center">
+                      <Link to="/editor">
+                        <Button size="lg" className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300">
+                          <Wand2 className="mr-2 h-5 w-5" />
+                          Try AI Resume Generation
+                          <ArrowRight className="ml-2 h-5 w-5" />
+                        </Button>
+                      </Link>
+                      <p className="text-sm text-muted-foreground mt-3">
+                        No sign-up required • 100% free • Instant results
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Floating Elements for Visual Appeal */}
+                <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-xl animate-pulse" />
+                <div className="absolute bottom-20 right-10 w-32 h-32 bg-gradient-to-r from-purple-400/20 to-indigo-400/20 rounded-full blur-xl animate-pulse delay-1000" />
+                <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-r from-indigo-400/20 to-blue-400/20 rounded-full blur-lg animate-pulse delay-500" />
+              </div>
+            </div>
+          </section>
+
+          {/* AI Features Section */}
           <section className="py-12 sm:py-16 lg:py-24">
             <div className="text-center space-y-4 mb-16">
               <h2 className="text-3xl md:text-4xl font-bold">
-                AI-Powered Content Enhancement
+                Powered by Advanced AI
               </h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Transform your resume content with intelligent AI suggestions powered by Google Gemini.
+                Enhance your resume creation experience with intelligent AI features.
               </p>
             </div>
 
@@ -184,6 +356,20 @@ const Home = () => {
               <Card className="border-0 shadow-card hover:shadow-float transition-all duration-300 text-center">
                 <CardHeader className="text-center">
                   <div className="mx-auto w-16 h-16 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-2xl flex items-center justify-center text-purple-600 mb-4">
+                    <Wand2 className="h-8 w-8" />
+                  </div>
+                  <CardTitle className="text-xl">AI Resume Generation</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <CardDescription className="text-base leading-relaxed">
+                    Simply describe your background and let AI create your entire resume with experience, education, skills, and custom sections.
+                  </CardDescription>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 shadow-card hover:shadow-float transition-all duration-300 text-center">
+                <CardHeader className="text-center">
+                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-2xl flex items-center justify-center text-green-600 mb-4">
                     <Sparkles className="h-8 w-8" />
                   </div>
                   <CardTitle className="text-xl">Smart Enhancement</CardTitle>
@@ -197,20 +383,6 @@ const Home = () => {
 
               <Card className="border-0 shadow-card hover:shadow-float transition-all duration-300 text-center">
                 <CardHeader className="text-center">
-                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-2xl flex items-center justify-center text-green-600 mb-4">
-                    <Bot className="h-8 w-8" />
-                  </div>
-                  <CardTitle className="text-xl">Intelligent Suggestions</CardTitle>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <CardDescription className="text-base leading-relaxed">
-                    Get multiple enhancement options with each click. Accept what you like, reject what you don't. The AI learns from your preferences to provide better suggestions.
-                  </CardDescription>
-                </CardContent>
-              </Card>
-
-              <Card className="border-0 shadow-card hover:shadow-float transition-all duration-300 text-center">
-                <CardHeader className="text-center">
                   <div className="mx-auto w-16 h-16 bg-gradient-to-br from-orange-500/10 to-red-500/10 rounded-2xl flex items-center justify-center text-orange-600 mb-4">
                     <Shield className="h-8 w-8" />
                   </div>
@@ -218,7 +390,7 @@ const Home = () => {
                 </CardHeader>
                 <CardContent className="text-center">
                   <CardDescription className="text-base leading-relaxed">
-                    All AI enhancements are processed securely with end-to-end encryption. Your content is validated and never stored. Complete privacy protection.
+                    All AI processing is done securely with end-to-end encryption. Your content is validated and never stored. Complete privacy protection.
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -227,8 +399,8 @@ const Home = () => {
             <div className="text-center">
               <Link to="/editor">
                 <Button size="lg" className="text-base sm:text-lg px-8 py-6 min-h-[48px] bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
-                  <Sparkles className="mr-2 h-5 w-5" />
-                  Try AI Enhancement
+                  <Wand2 className="mr-2 h-5 w-5" />
+                  Try AI Features
                   <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
               </Link>
@@ -266,7 +438,7 @@ const Home = () => {
                       <p className="text-lg text-white/90 mb-4">
                         {isMobile 
                           ? "See how easy it is to build a resume on your phone" 
-                          : "Watch the full desktop experience in action"
+                          : "Watch the full experience in action"
                         }
                       </p>
                     </div>

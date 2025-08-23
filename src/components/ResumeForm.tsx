@@ -14,6 +14,7 @@ import sampleData from "@/data/sample.json";
 import { Language } from "@/contexts/ResumeContext";
 import AIEnhanceButton from "@/components/AIEnhanceButton";
 import { AI_FIELDS } from "@/services/ai";
+import AIAssistedForm from "@/components/AIAssistedForm";
 
 const fixSampleLanguages = (languages: any[]): Language[] =>
   languages.map((lang) => ({
@@ -73,11 +74,11 @@ const ResumeForm = ({ disabled = false }: ResumeFormProps) => {
 
   const generateId = () => Date.now().toString();
 
-  // Show the button only if the form is empty
-  const showLoadSample = !state.data.firstName && !state.data.lastName;
-
   return (
-    <div className="space-y-8">
+    <div className="space-y-2 md:space-y-4">
+      {/* AI-Assisted Form Filling */}
+      <AIAssistedForm disabled={disabled} />
+
       <Tabs defaultValue="basic" className="w-full">
         <TabsList className="grid w-full grid-cols-7">
           <TabsTrigger value="basic" className="flex items-center space-x-2">
@@ -111,7 +112,7 @@ const ResumeForm = ({ disabled = false }: ResumeFormProps) => {
         </TabsList>
 
         {/* Basic Information */}
-        <TabsContent value="basic" className="mt-6">
+        <TabsContent value="basic" className="mt-4">
           <Card>
             <CardHeader>
               <CardTitle>Personal Information</CardTitle>
@@ -119,7 +120,7 @@ const ResumeForm = ({ disabled = false }: ResumeFormProps) => {
                 Enter your basic contact information and professional summary.
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First Name</Label>
@@ -418,6 +419,7 @@ const ResumeForm = ({ disabled = false }: ResumeFormProps) => {
                     id: generateId(),
                     degree: '',
                     school: '',
+                    field: '',
                     location: '',
                     startDate: '',
                     endDate: '',

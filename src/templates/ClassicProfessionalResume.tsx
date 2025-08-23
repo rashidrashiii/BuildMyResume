@@ -132,7 +132,7 @@ const ClassicProfessionalResume = forwardRef<HTMLDivElement, { data: ResumeData 
         )}
 
         {/* ---------- PROFESSIONAL EXPERIENCE ---------- */}
-        {data.experiences && data.experiences.length > 0 && (
+        {data.experiences && data.experiences.length > 0 && data.experiences.some(exp => exp.company || exp.title || exp.description || exp.startDate || exp.endDate) && (
           <>
             <SectionHeader>PROFESSIONAL EXPERIENCE</SectionHeader>
             {data.experiences.map((experience) => (
@@ -220,7 +220,7 @@ const ClassicProfessionalResume = forwardRef<HTMLDivElement, { data: ResumeData 
         )}
 
         {/* ---------- EDUCATION ---------- */}
-        {data.education && data.education.length > 0 && (
+        {data.education && data.education.length > 0 && data.education.some(edu => edu.school || edu.degree || edu.field || edu.startDate || edu.endDate) && (
           <>
             <SectionHeader>EDUCATION</SectionHeader>
             {data.education.map((education) => (

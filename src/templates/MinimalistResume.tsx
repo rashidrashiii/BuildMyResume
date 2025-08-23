@@ -66,7 +66,7 @@ const MinimalistResume = forwardRef<HTMLDivElement, { data: ResumeData }>((props
         <h1 className="font-bold text-black mb-1" style={{ fontSize: '24px', letterSpacing: '2px' }}>
           {data.firstName?.toUpperCase()} {data.lastName?.toUpperCase()}
         </h1>
-        {data.experiences && data.experiences.length > 0 && (
+        {data.experiences && data.experiences.length > 0 && data.experiences.some(exp => exp.company || exp.title || exp.description || exp.startDate || exp.endDate) && (
           <p className="text-gray-600 mb-3" style={{ fontSize: '12px', fontWeight: '500' }}>
             {data.experiences[0].title}
           </p>
@@ -139,7 +139,7 @@ const MinimalistResume = forwardRef<HTMLDivElement, { data: ResumeData }>((props
       )}
 
       {/* Experience */}
-      {data.experiences.length > 0 && (
+      {data.experiences.length > 0 && data.experiences.some(exp => exp.company || exp.title || exp.description || exp.startDate || exp.endDate) && (
         <section className="mb-8">
           <h2 className="font-bold text-black mb-4" style={{ fontSize: '16px', letterSpacing: '1px' }}>
             EXPERIENCE
@@ -211,7 +211,7 @@ const MinimalistResume = forwardRef<HTMLDivElement, { data: ResumeData }>((props
       )}
 
       {/* Education */}
-      {data.education.length > 0 && (
+      {data.education.length > 0 && data.education.some(edu => edu.school || edu.degree || edu.field || edu.startDate || edu.endDate) && (
         <section className="mb-8">
           <h2 className="font-bold text-black mb-4" style={{ fontSize: '16px', letterSpacing: '1px' }}>
             EDUCATION

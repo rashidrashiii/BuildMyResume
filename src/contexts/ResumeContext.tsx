@@ -1,10 +1,10 @@
-import React, { createContext, useContext, useReducer, ReactNode, useCallback } from "react";
-import sampleData from "@/data/sample.json";
+import React, { createContext, useContext, useReducer, useCallback, ReactNode } from 'react';
 
+// Define types first
 export interface Experience {
   id: string;
-  title: string;
   company: string;
+  title: string;
   location: string;
   startDate: string;
   endDate: string;
@@ -14,13 +14,14 @@ export interface Experience {
 
 export interface Education {
   id: string;
-  degree: string;
   school: string;
+  degree: string;
+  field: string;
   location: string;
   startDate: string;
   endDate: string;
   current: boolean;
-  gpa?: string;
+  gpa: string;
 }
 
 export interface Certification {
@@ -29,12 +30,13 @@ export interface Certification {
   issuer: string;
   date: string;
   credentialId?: string;
+  url?: string;
 }
 
 export interface Language {
   id: string;
   name: string;
-  proficiency: "Native" | "Conversational" | "Basic" | "Fluent";
+  proficiency: "Native" | "Fluent" | "Conversational" | "Basic";
   rating: number;
 }
 
@@ -45,7 +47,6 @@ export interface CustomSection {
 }
 
 export interface ResumeData {
-  // Basic Info
   firstName: string;
   lastName: string;
   email: string;
@@ -54,31 +55,15 @@ export interface ResumeData {
   city: string;
   state: string;
   zipCode: string;
-  linkedIn?: string;
-  website?: string;
-  
-  // Professional Summary
+  linkedIn: string;
+  website: string;
   summary: string;
-  
-  // Experience
   experiences: Experience[];
-  
-  // Education
   education: Education[];
-  
-  // Skills
   skills: string[];
-  
-  // Certifications
   certifications: Certification[];
-  
-  // Languages
   languages: Language[];
-  
-  // Custom sections
   customSections: CustomSection[];
-  
-  // Selected template
   selectedTemplate: string;
 }
 
@@ -86,13 +71,13 @@ interface ResumeState {
   data: ResumeData;
   isValid: boolean;
   errors: Record<string, string>;
-  editedHtml?: string;
+  editedHtml: string | undefined;
   isPreviewEditing: boolean;
-  hasUserStartedEditing: boolean; // New property to track if user has started entering data
-  enhancementCounts: Record<string, number>; // Track enhancement counts per field
+  hasUserStartedEditing: boolean;
+  enhancementCounts: Record<string, number>;
 }
 
-type ResumeAction = 
+type ResumeAction =
   | { type: 'UPDATE_FIELD'; field: keyof ResumeData; value: any }
   | { type: 'ADD_EXPERIENCE'; experience: Experience }
   | { type: 'UPDATE_EXPERIENCE'; id: string; experience: Partial<Experience> }
@@ -110,58 +95,143 @@ type ResumeAction =
   | { type: 'UPDATE_CUSTOM_SECTION'; id: string; customSection: Partial<CustomSection> }
   | { type: 'REMOVE_CUSTOM_SECTION'; id: string }
   | { type: 'SET_TEMPLATE'; template: string }
-  | { type: 'SET_TEMPLATE_FROM_URL'; template: string } // New action for template selection from URL
+  | { type: 'SET_TEMPLATE_FROM_URL'; template: string }
   | { type: 'LOAD_DATA'; data: ResumeData }
   | { type: 'RESET' }
   | { type: 'UPDATE_EDITED_CONTENT'; payload: { editedHtml: string } }
   | { type: 'SET_PREVIEW_EDITING'; payload: { isPreviewEditing: boolean } }
-  | { type: 'SET_USER_STARTED_EDITING' } // New action to mark user has started editing
+  | { type: 'SET_USER_STARTED_EDITING' }
   | { type: 'INCREMENT_ENHANCEMENT_COUNT'; field: string }
   | { type: 'RESET_ENHANCEMENT_COUNTS' };
 
-// Create empty initial data
+// Create empty data for initialization
 const emptyData: ResumeData = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  address: "",
-  city: "",
-  state: "",
-  zipCode: "",
-  linkedIn: "",
-  website: "",
-  summary: "",
-  experiences: [],
-  education: [],
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  address: '',
+  city: '',
+  state: '',
+  zipCode: '',
+  linkedIn: '',
+  website: '',
+  summary: '',
+  experiences: [
+    {
+      id: '1',
+      company: '',
+      title: '',
+      location: '',
+      startDate: '',
+      endDate: '',
+      current: false,
+      description: '',
+    },
+  ],
+  education: [
+    {
+      id: '1',
+      school: '',
+      degree: '',
+      field: '',
+      location: '',
+      startDate: '',
+      endDate: '',
+      current: false,
+      gpa: '',
+    },
+  ],
   skills: [],
   certifications: [],
   languages: [],
   customSections: [],
-        selectedTemplate: "modern-clean"
+  selectedTemplate: 'modern-clean',
 };
 
-const fixSampleLanguages = (languages: any[]): Language[] =>
-  languages.map((lang) => ({
-    ...lang,
-    proficiency: ["Native", "Conversational", "Basic", "Fluent"].includes(lang.proficiency)
-      ? lang.proficiency
-      : "Basic"
-  })) as Language[];
-
-// Create dummy data for preview
+// Create dummy data for the preview (this is used when user hasn't started editing)
 const dummyData: ResumeData = {
-  ...sampleData,
-  languages: fixSampleLanguages(sampleData.languages),
-  customSections: []
+  firstName: 'John',
+  lastName: 'Doe',
+  email: 'john.doe@email.com',
+  phone: '(555) 123-4567',
+  address: '123 Main Street',
+  city: 'New York',
+  state: 'NY',
+  zipCode: '10001',
+  linkedIn: 'linkedin.com/in/johndoe',
+  website: 'johndoe.com',
+  summary: 'Experienced software developer with 5+ years of expertise in full-stack development. Passionate about creating scalable web applications and leading development teams.',
+  experiences: [
+    {
+      id: '1',
+      company: 'Tech Solutions Inc.',
+      title: 'Senior Software Developer',
+      location: 'New York, NY',
+      startDate: '2021-01',
+      endDate: '',
+      current: true,
+      description: 'Lead development of modern web applications using React, Node.js, and cloud technologies. Manage a team of 3 junior developers and collaborate with product managers to deliver high-quality solutions.',
+    },
+    {
+      id: '2',
+      company: 'StartupXYZ',
+      title: 'Full Stack Developer',
+      location: 'San Francisco, CA',
+      startDate: '2019-06',
+      endDate: '2020-12',
+      current: false,
+      description: 'Developed and maintained multiple client projects using modern JavaScript frameworks. Implemented responsive designs and optimized application performance.',
+    },
+  ],
+  education: [
+    {
+      id: '1',
+      school: 'University of Technology',
+      degree: 'Bachelor of Science',
+      field: 'Computer Science',
+      location: 'Boston, MA',
+      startDate: '2015-09',
+      endDate: '2019-05',
+      current: false,
+      gpa: '3.8',
+    },
+  ],
+  skills: ['JavaScript', 'React', 'Node.js', 'Python', 'AWS', 'Docker', 'MongoDB', 'PostgreSQL'],
+  certifications: [
+    {
+      id: '1',
+      name: 'AWS Certified Solutions Architect',
+      issuer: 'Amazon Web Services',
+      date: '2022-03',
+      credentialId: 'AWS-123456',
+    },
+  ],
+  languages: [
+    {
+      id: '1',
+      name: 'English',
+      proficiency: 'Native',
+      rating: 5,
+    },
+    {
+      id: '2',
+      name: 'Spanish',
+      proficiency: 'Conversational',
+      rating: 3,
+    },
+  ],
+  customSections: [],
+  selectedTemplate: 'modern-clean',
 };
 
-// Function to get data for preview - shows dummy data initially, then user data
-const getPreviewData = (userData: ResumeData, hasUserStartedEditing: boolean): ResumeData => {
-  if (hasUserStartedEditing) {
-    return userData;
+const getPreviewData = (data: ResumeData, hasUserStartedEditing: boolean): ResumeData => {
+  // If user hasn't started editing, show dummy data in preview
+  if (!hasUserStartedEditing) {
+    return dummyData;
   }
-  return dummyData;
+
+  return data;
 };
 
 const initialState: ResumeState = {
@@ -457,7 +527,13 @@ function resumeReducer(state: ResumeState, action: ResumeAction): ResumeState {
     case 'LOAD_DATA':
       return {
         ...state,
-        data: action.data
+        data: action.data,
+        // Clear preview editing to allow form updates
+        isPreviewEditing: false,
+        // Clear edited HTML to sync with new data
+        editedHtml: undefined,
+        // Mark that user has started editing
+        hasUserStartedEditing: true
       };
       
     case 'RESET':

@@ -1,49 +1,16 @@
 import { forwardRef } from "react";
-import { Mail, Phone, MapPin, Globe, Linkedin, Star } from "lucide-react";
+import { Mail, Phone, MapPin, Globe, Linkedin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ResumeData } from "@/contexts/ResumeContext";
+import { formatDate, formatDateRange } from "@/utils/dateUtils";
 
 const ModernCleanResume = forwardRef<HTMLDivElement, { data: ResumeData }>((props, ref) => {
   const { data } = props;
 
-  const formatDate = (dateString: string) => {
-    if (!dateString) return '';
-    const date = new Date(dateString + '-01');
-    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-  };
 
-  const formatDateRange = (startDate: string, endDate: string, current: boolean) => {
-    const start = formatDate(startDate);
-    const end = current ? 'Present' : formatDate(endDate);
-    return `${start} - ${end}`;
-  };
 
-  const renderStars = (proficiency: string) => {
-    // Calculate rating based on proficiency level
-    let rating: number;
-    switch (proficiency) {
-      case 'Native': rating = 5; break;
-      case 'Fluent': rating = 4; break;
-      case 'Conversational': rating = 3; break;
-      case 'Basic': rating = 2; break;
-      default: rating = 1; break;
-    }
-    
-    return Array.from({ length: 5 }, (_, i) => {
-      const isFilled = i < rating;
-      return (
-        <Star
-          key={i}
-          className="h-3 w-3"
-          style={{
-            fill: isFilled ? '#2563eb' : 'none',
-            stroke: isFilled ? '#2563eb' : '#9ca3af',
-          }}
-        />
-      );
-    });
-  };
+
   
 
   return (
@@ -102,7 +69,7 @@ const ModernCleanResume = forwardRef<HTMLDivElement, { data: ResumeData }>((prop
       )}
 
       {/* Work Experience */}
-      {data.experiences.length > 0 && (
+      {data.experiences.length > 0 && data.experiences.some(exp => exp.company || exp.title || exp.description || exp.startDate || exp.endDate) && (
         <section className="mb-4">
           <h2 className="text-base font-bold text-gray-900 mb-3 pb-1 border-b-2 border-blue-600">
             Professional Experience
@@ -110,8 +77,8 @@ const ModernCleanResume = forwardRef<HTMLDivElement, { data: ResumeData }>((prop
           <div className="space-y-3">
             {data.experiences.map((experience) => (
               <div key={experience.id}>
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-1 print-date-layout">
-                  <div className="flex-1">
+                <div className="flex justify-between items-start mb-1">
+                  <div className="flex-1 min-w-0 pr-2">
                     <h3 className="text-sm font-semibold text-gray-900">
                       {experience.title}
                     </h3>
@@ -120,7 +87,7 @@ const ModernCleanResume = forwardRef<HTMLDivElement, { data: ResumeData }>((prop
                       {experience.location && ` \u2022 ${experience.location}`}
                     </p>
                   </div>
-                  <div className="text-xs text-gray-600 md:text-right mt-1 md:mt-0">
+                  <div className="text-xs text-gray-600 text-right flex-shrink-0">
                     {formatDateRange(experience.startDate, experience.endDate, experience.current)}
                   </div>
                 </div>
@@ -136,7 +103,7 @@ const ModernCleanResume = forwardRef<HTMLDivElement, { data: ResumeData }>((prop
       )}
 
       {/* Education */}
-      {data.education.length > 0 && (
+      {data.education.length > 0 && data.education.some(edu => edu.school || edu.degree || edu.field || edu.startDate || edu.endDate) && (
         <section className="mb-4">
           <h2 className="text-base font-bold text-gray-900 mb-3 pb-1 border-b-2 border-blue-600">
             Education
@@ -144,8 +111,8 @@ const ModernCleanResume = forwardRef<HTMLDivElement, { data: ResumeData }>((prop
           <div className="space-y-3">
             {data.education.map((education) => (
               <div key={education.id}>
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start print-date-layout">
-                  <div className="flex-1">
+                <div className="flex justify-between items-start">
+                  <div className="flex-1 min-w-0 pr-2">
                     <h3 className="text-sm font-semibold text-gray-900">
                       {education.degree}
                     </h3>
@@ -157,7 +124,7 @@ const ModernCleanResume = forwardRef<HTMLDivElement, { data: ResumeData }>((prop
                       <p className="text-xs text-gray-600">GPA: {education.gpa}</p>
                     )}
                   </div>
-                  <div className="text-xs text-gray-600 md:text-right mt-1 md:mt-0">
+                  <div className="text-xs text-gray-600 text-right flex-shrink-0">
                     {formatDateRange(education.startDate, education.endDate, education.current)}
                   </div>
                 </div>
@@ -194,8 +161,8 @@ const ModernCleanResume = forwardRef<HTMLDivElement, { data: ResumeData }>((prop
           </h2>
           <div className="space-y-2">
             {data.certifications.map((certification) => (
-              <div key={certification.id} className="flex flex-col md:flex-row md:justify-between md:items-start print-date-layout">
-                <div className="flex-1">
+              <div key={certification.id} className="flex justify-between items-start">
+                <div className="flex-1 min-w-0 pr-2">
                   <h3 className="text-sm font-semibold text-gray-900">
                     {certification.name}
                   </h3>
@@ -206,8 +173,8 @@ const ModernCleanResume = forwardRef<HTMLDivElement, { data: ResumeData }>((prop
                     </p>
                   )}
                 </div>
-                <div className="text-xs text-gray-600 mt-1 md:mt-0">
-                  {formatDate(certification.date)}
+                <div className="text-xs text-gray-600 text-right flex-shrink-0">
+                  {certification.date && formatDate(certification.date)}
                 </div>
               </div>
             ))}
@@ -217,19 +184,20 @@ const ModernCleanResume = forwardRef<HTMLDivElement, { data: ResumeData }>((prop
 
       {/* Languages */}
       {data.languages.length > 0 && (
-        <section className="mb-6 md:mb-8">
-          <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-4 pb-1 border-b-2 border-blue-600">
+        <section className="mb-4">
+          <h2 className="text-base font-bold text-gray-900 mb-3 pb-1 border-b-2 border-blue-600">
             Languages
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 print-languages-grid">
+          <div className="space-y-2">
             {data.languages.map((language) => (
               <div key={language.id} className="flex justify-between items-center">
-                <div>
-                  <h3 className="font-semibold text-gray-900 text-sm md:text-base">{language.name}</h3>
-                  <p className="text-xs md:text-sm text-gray-600">{language.proficiency}</p>
-                </div>
-                <div className="flex gap-1">
-                  {renderStars(language.proficiency)}
+                <div className="flex-1">
+                  <span className="text-sm font-medium text-gray-900">
+                    {language.name}
+                  </span>
+                  <span className="text-xs text-gray-600 ml-2">
+                    {language.proficiency}
+                  </span>
                 </div>
               </div>
             ))}
@@ -238,32 +206,20 @@ const ModernCleanResume = forwardRef<HTMLDivElement, { data: ResumeData }>((prop
       )}
 
       {/* Custom Sections */}
-      {data.customSections && data.customSections.length > 0 && (
-        <div className="space-y-6 md:space-y-8">
-          {data.customSections.map((section) => (
-            <section key={section.id} className="mb-6 md:mb-8">
-              <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-4 pb-1 border-b-2 border-blue-600">
-                {section.heading}
-              </h2>
-              <div className="text-gray-700 text-sm md:text-base leading-relaxed whitespace-pre-line">
-                {section.content}
-              </div>
-            </section>
-          ))}
-        </div>
-      )}
-
-      {/* Empty State */}
-      {!data.firstName && !data.lastName && !data.summary && data.experiences.length === 0 && (
-        <div className="text-center py-8 text-gray-400">
-          <h3 className="text-lg font-semibold mb-3">Your Resume Preview</h3>
-          <p>Start filling out the form to see your resume come to life!</p>
-        </div>
-      )}
+      {data.customSections.map((section) => (
+        <section key={section.id} className="mb-4">
+          <h2 className="text-base font-bold text-gray-900 mb-3 pb-1 border-b-2 border-blue-600">
+            {section.heading}
+          </h2>
+          <div className="text-gray-700 text-xs leading-relaxed whitespace-pre-line">
+            {section.content}
+          </div>
+        </section>
+      ))}
     </div>
   );
 });
 
 ModernCleanResume.displayName = "ModernCleanResume";
 
-export default ModernCleanResume; 
+export default ModernCleanResume;

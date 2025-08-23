@@ -1,7 +1,7 @@
 {
   "name": "BuildMyResume - AI-Powered Resume Builder",
   "short_name": "BuildMyResume",
-  "description": "Create professional, ATS-friendly resumes with AI-powered content enhancement. 100% free, no sign-up required, end-to-end encrypted.",
+  "description": "Create professional, ATS-friendly resumes with AI-powered generation and enhancement. 100% free, no sign-up required, end-to-end encrypted.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -53,9 +53,9 @@
   ],
   "shortcuts": [
     {
-      "name": "Create Resume",
-      "short_name": "Create",
-      "description": "Start building a new resume with AI enhancement",
+      "name": "Create Resume with AI",
+      "short_name": "AI Create",
+      "description": "Start building a new resume with AI generation",
       "url": "/editor",
       "icons": [
         {
@@ -78,7 +78,7 @@
     },
     {
       "name": "AI Enhancement",
-      "short_name": "AI",
+      "short_name": "AI Enhance",
       "description": "Try AI-powered content enhancement",
       "url": "/editor",
       "icons": [
