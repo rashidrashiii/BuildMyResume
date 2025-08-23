@@ -92,7 +92,7 @@ const Home = () => {
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Create professional, ATS-optimized resumes with our open source resume builder. Features 15+ templates, AI-powered content enhancement, and intelligent resume generation. No sign-up required, 100% free, and end-to-end encrypted.
+              AI-powered, open-source resume builder for professional, ATS-optimized resumes.
               </p>
             </div>
 
