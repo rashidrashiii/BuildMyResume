@@ -4,7 +4,7 @@
     "url": "https://buildmyresume.live",
     "type": "Web Application",
     "category": "Productivity Tool",
-    "description": "Free resume builder with AI-powered generation and enhancement. Features 15+ ATS-optimized templates and intelligent resume creation.",
+    "description": "Open source resume builder with AI-powered generation and enhancement. Features 15+ ATS-optimized templates and intelligent resume creation.",
     "creator": {
       "name": "Muhammed Rashid V",
       "role": "Software Engineer",
@@ -85,7 +85,7 @@
       "home": {
         "url": "/",
         "purpose": "Landing page with features and benefits",
-        "key_content": "Free resume builder, privacy-first, no signup"
+        "key_content": "Open source resume builder, privacy-first, no signup"
       },
       "templates": {
         "url": "/templates",

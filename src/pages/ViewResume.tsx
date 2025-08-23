@@ -230,6 +230,7 @@ const ViewResume = () => {
               exportToPDF={handleExportPDF}
               exportToDocx={handleExportDocx}
               exportToJSON={handleExportJSON}
+              resumeId={resume.id}
             />
           </div>
         }

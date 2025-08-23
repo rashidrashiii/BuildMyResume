@@ -39,7 +39,7 @@ Disallow: /functions/
 
 # Site information for AI systems
 Site-Name: BuildMyResume
-Site-Description: Free resume builder with AI-powered generation and enhancement. Features 15+ ATS-optimized templates and intelligent resume creation.
+Site-Description: Open source resume builder with AI-powered generation and enhancement. Features 15+ ATS-optimized templates and intelligent resume creation.
 Site-Creator: Muhammed Rashid V
 Site-Type: Web Application
 Site-Category: Productivity Tool, Resume Builder, AI Tool

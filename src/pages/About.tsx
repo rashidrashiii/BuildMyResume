@@ -59,7 +59,7 @@ const About = () => {
       <SEO 
         title="About BuildMyResume - Created by Muhammed Rashid V"
         description="Learn about BuildMyResume, a privacy-first resume builder created by Muhammed Rashid V. Discover our mission to provide free, user-friendly tools that respect your privacy."
-        keywords="about BuildMyResume, Muhammed Rashid V, privacy-first resume builder, open source resume tool, free resume builder"
+        keywords="about BuildMyResume, Muhammed Rashid V, privacy-first resume builder, open source resume tool, open source resume builder"
         url={`${import.meta.env.VITE_BASE_URL || 'https://buildmyresume.live'}/about`}
         image={`${import.meta.env.VITE_BASE_URL || 'https://buildmyresume.live'}/about-preview.png`}
       />

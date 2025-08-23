@@ -44,6 +44,24 @@ export type Database = {
         }
         Relationships: []
       }
+      resume_counter: {
+        Row: {
+          id: number
+          total_resumes: number
+          last_updated: string
+        }
+        Insert: {
+          id?: number
+          total_resumes?: number
+          last_updated?: string
+        }
+        Update: {
+          id?: number
+          total_resumes?: number
+          last_updated?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       resume_publishing_stats: {
@@ -99,6 +117,10 @@ export type Database = {
         }[]
       }
       cleanup_old_anonymous_resumes: {
+        Args: Record<string, never>
+        Returns: number
+      }
+      increment_resume_counter: {
         Args: Record<string, never>
         Returns: number
       }

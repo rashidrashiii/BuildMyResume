@@ -4,18 +4,20 @@ import { Download, FileText, Image, AlertTriangle } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { checkRateLimit, SECURITY_CONFIG } from "@/utils/security";
 import { useToast } from "@/hooks/use-toast";
+import ResumeCounterService from "@/services/resumeCounter";
 
 interface ExportButtonsProps {
   exportToPDF: () => void;
   exportToDocx: () => void;
   exportToJSON: () => void;
+  resumeId?: string;
 }
 
-const ExportButtons = ({ exportToPDF, exportToDocx, exportToJSON }: ExportButtonsProps) => {
+const ExportButtons = ({ exportToPDF, exportToDocx, exportToJSON, resumeId }: ExportButtonsProps) => {
   const isMobile = useIsMobile();
   const { toast } = useToast();
 
-  const handlePDFExport = () => {
+  const handlePDFExport = async () => {
     // Check rate limit before PDF export
     const rateLimit = checkRateLimit('pdf_export');
     // Check if rate limiting is enabled
@@ -34,6 +36,16 @@ const ExportButtons = ({ exportToPDF, exportToDocx, exportToJSON }: ExportButton
         title: "PDF Export",
         description: `You have ${rateLimit.remaining} PDF exports remaining in this hour.`,
       });
+    }
+
+    // Increment resume counter if resumeId is provided
+    if (resumeId) {
+      try {
+        await ResumeCounterService.incrementForResume(resumeId);
+      } catch (error) {
+        // Silently fail - don't block the export
+        console.warn('Failed to increment resume counter:', error);
+      }
     }
 
     exportToPDF();

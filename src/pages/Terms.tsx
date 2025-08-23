@@ -12,7 +12,7 @@ const Terms = () => {
     <>
       <SEO 
         title="Terms of Service - BuildMyResume"
-        description="Read the terms of service for BuildMyResume. Learn about usage rights, limitations, and your responsibilities when using our free resume builder."
+        description="Read the terms of service for BuildMyResume. Learn about usage rights, limitations, and your responsibilities when using our open source resume builder."
         keywords="terms of service, usage terms, legal, resume builder terms, free service terms"
         url={`${import.meta.env.VITE_BASE_URL || 'https://buildmyresume.live'}/terms`}
         image={`${import.meta.env.VITE_BASE_URL || 'https://buildmyresume.live'}/terms-preview.png`}

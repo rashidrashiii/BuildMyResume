@@ -7,6 +7,7 @@ import { Share2, RefreshCw, Globe, Lock, Link as LinkIcon, AlertTriangle } from 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { generateEncryptionKey, encryptAES } from '@/utils/export';
 import { checkRateLimit, validateResumeData, SECURITY_CONFIG } from '@/utils/security';
+import ResumeCounterService from '@/services/resumeCounter';
 import {
   Dialog,
   DialogContent,
@@ -23,9 +24,10 @@ interface PublishButtonProps {
   existingId?: string;
   onPublished?: (id: string) => void;
   keyProp?: string | null;
+  resumeId?: string;
 }
 
-export const PublishButton = ({ resumeData, existingId, onPublished, keyProp }: PublishButtonProps) => {
+export const PublishButton = ({ resumeData, existingId, onPublished, keyProp, resumeId }: PublishButtonProps) => {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showShareLink, setShowShareLink] = useState(false);
   const [showRateLimitWarning, setShowRateLimitWarning] = useState(false);
@@ -121,6 +123,16 @@ export const PublishButton = ({ resumeData, existingId, onPublished, keyProp }: 
         // Format: /view/[id]#key=...
         const url = `${window.location.origin}/view/${result.id}#key=${encodeURIComponent(key)}`;
         setShareUrl(url);
+
+        // Increment resume counter if this is a new resume (not an update)
+        if (!existingId && resumeId) {
+          try {
+            await ResumeCounterService.incrementForResume(resumeId);
+          } catch (error) {
+            // Silently fail - don't block the publish success
+            console.warn('Failed to increment resume counter:', error);
+          }
+        }
       }
     } catch (error) {
       // Enhanced error handling

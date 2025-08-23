@@ -64,9 +64,26 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* GitHub Stats */}
-          <div className="flex justify-center pt-4">
+          {/* GitHub Stats and Product Hunt Badge */}
+          <div className="flex flex-col items-center space-y-4 pt-4">
             <GitHubStats showLanguage={false} className="text-center" />
+            
+            {/* Product Hunt Badge */}
+            <div className="flex justify-center">
+              <a
+                href="https://www.producthunt.com/products/buildmyresume?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-buildmyresume"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="BuildMyResume on Product Hunt"
+                className="transition-transform hover:scale-105"
+              >
+                <img
+                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1003446&theme=light&t=1754748059292"
+                  alt="BuildMyResume - Featured on Product Hunt"
+                  className="h-7 sm:h-8 w-auto"
+                />
+              </a>
+            </div>
           </div>
 
           {/* Copyright */}

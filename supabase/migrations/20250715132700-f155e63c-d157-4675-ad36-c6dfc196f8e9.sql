@@ -171,3 +171,49 @@ GRANT EXECUTE ON FUNCTION check_rate_limit(INET, TEXT, INTEGER, INTEGER) TO anon
 GRANT EXECUTE ON FUNCTION validate_resume_data_size(JSONB) TO anon, authenticated;
 GRANT EXECUTE ON FUNCTION get_rate_limit_info(INET) TO anon, authenticated;
 GRANT SELECT ON resume_publishing_stats TO anon, authenticated;
+
+-- Create resume counter table
+CREATE TABLE public.resume_counter (
+  id INTEGER PRIMARY KEY DEFAULT 1,
+  total_resumes INTEGER NOT NULL DEFAULT 0,
+  last_updated TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
+  CONSTRAINT single_row CHECK (id = 1)
+);
+
+-- Insert initial counter value
+INSERT INTO public.resume_counter (id, total_resumes) VALUES (1, 0);
+
+-- Enable RLS
+ALTER TABLE public.resume_counter ENABLE ROW LEVEL SECURITY;
+
+-- Allow public read access
+CREATE POLICY "Anyone can read resume counter" 
+ON public.resume_counter 
+FOR SELECT 
+USING (true);
+
+-- Allow public update access (for incrementing)
+CREATE POLICY "Anyone can update resume counter" 
+ON public.resume_counter 
+FOR UPDATE 
+USING (true);
+
+-- Create function to increment resume counter
+CREATE OR REPLACE FUNCTION increment_resume_counter()
+RETURNS INTEGER AS $$
+DECLARE
+  new_count INTEGER;
+BEGIN
+  UPDATE public.resume_counter 
+  SET 
+    total_resumes = total_resumes + 1,
+    last_updated = now()
+  WHERE id = 1
+  RETURNING total_resumes INTO new_count;
+  
+  RETURN new_count;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Grant execute permission
+GRANT EXECUTE ON FUNCTION increment_resume_counter() TO anon, authenticated;

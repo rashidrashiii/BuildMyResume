@@ -105,6 +105,7 @@ const Editor = () => {
   const [shareUrl, setShareUrl] = useState('');
   const [isFormattingModeEnabled, setIsFormattingModeEnabled] = useState(false);
   const [showFormatConfirm, setShowFormatConfirm] = useState(false);
+  const [resumeId] = useState(() => `resume_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
 
   const baseWidth = 794; // A4 width in pixels
   const baseHeight = 1045; // A4 height in pixels (accounting for Puppeteer's default margins)
@@ -638,7 +639,7 @@ const Editor = () => {
         actions={
           id ? (
             <>
-              <ExportButtons exportToPDF={exportToPDF} exportToDocx={exportToDocx} exportToJSON={exportToJSON} />
+              <ExportButtons exportToPDF={exportToPDF} exportToDocx={exportToDocx} exportToJSON={exportToJSON} resumeId={resumeId} />
               <Button
                 onClick={handleSavePublished}
                 className=" px-4 py-2 text-sm font-medium shadow-elegant"
@@ -675,8 +676,8 @@ const Editor = () => {
             </>
           ) : (
             <div className="flex flex-row items-center gap-2">
-              <ExportButtons exportToPDF={exportToPDF} exportToDocx={exportToDocx} exportToJSON={exportToJSON} />
-              <PublishButton resumeData={state.data} />
+              <ExportButtons exportToPDF={exportToPDF} exportToDocx={exportToDocx} exportToJSON={exportToJSON} resumeId={resumeId} />
+              <PublishButton resumeData={state.data} resumeId={resumeId} />
             </div>
           )
         }
@@ -688,6 +689,7 @@ const Editor = () => {
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full grid-cols-3 my-4">
               <TabsTrigger value="edit" className="flex items-center space-x-2">
+                <Edit3 className="h-4 w-4" />
                 <span>Edit</span>
               </TabsTrigger>
               <TabsTrigger value="preview" className="flex items-center space-x-2">

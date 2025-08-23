@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { faqItems } from "@/constants/faq";
 import GitHubStats from "@/components/GitHubStats";
+import ResumeCounter from "@/components/ResumeCounter";
 
 const Home = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -60,16 +61,15 @@ const Home = () => {
     "AI-powered enhancement",
     "AI resume generation",
     "End-to-end encrypted",
-    "Export to PDF & JSON",
     "Free forever"
   ];
 
   return (
     <>
       <SEO 
-        title="Free Resume Builder - Create Professional ATS-Friendly Resumes"
+        title="Open Source Resume Builder - Create Professional ATS-Friendly Resumes"
         description="Build professional, ATS-friendly resumes with our privacy-first resume builder. Features AI-powered enhancement, multiple templates, and no sign-up required. 100% free, end-to-end encrypted, and open source."
-        keywords="resume builder, free resume builder, ATS friendly resume, professional resume templates, CV builder, job application, career tools, resume maker, online resume builder, AI resume enhancement, privacy resume builder"
+        keywords="resume builder, open source resume builder, ATS friendly resume, professional resume templates, CV builder, job application, career tools, resume maker, online resume builder, AI resume enhancement, privacy resume builder"
         url={`${import.meta.env.VITE_BASE_URL || 'https://buildmyresume.live'}`}
         image={`${import.meta.env.VITE_BASE_URL || 'https://buildmyresume.live'}/og-image.png`}
       />
@@ -83,7 +83,7 @@ const Home = () => {
           <div className="text-center space-y-8">
             <div className="space-y-4">
               <Badge variant="secondary" className="text-sm px-4 py-2">
-                🚀 Free Resume Builder
+                🚀 Open Source Resume Builder
               </Badge>
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
                 Build Your Perfect Resume
@@ -92,7 +92,7 @@ const Home = () => {
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Create professional, ATS-optimized resumes with our free resume builder. Features 15+ templates, AI-powered content enhancement, and intelligent resume generation. No sign-up required, 100% free, and end-to-end encrypted.
+                Create professional, ATS-optimized resumes with our open source resume builder. Features 15+ templates, AI-powered content enhancement, and intelligent resume generation. No sign-up required, 100% free, and end-to-end encrypted.
               </p>
             </div>
 
@@ -110,21 +110,10 @@ const Home = () => {
                 </Link>
               </div>
 
-              {/* Product Hunt Badge in Hero */}
-            <div className="flex justify-center">
-                <a
-                  href="https://www.producthunt.com/products/buildmyresume?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-buildmyresume"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="BuildMyResume on Product Hunt"
-                >
-                  <img
-                    src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1003446&theme=light&t=1754748059292"
-                    alt="BuildMyResume - Featured on Product Hunt"
-                    className="h-8 sm:h-9 md:h-10 w-auto"
-                  />
-                </a>
-            </div>
+              {/* Resume Counter */}
+              <div className="flex justify-center">
+                <ResumeCounter />
+              </div>
 
             {/* Benefits Grid */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
