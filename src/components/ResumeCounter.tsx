@@ -94,7 +94,7 @@ export const ResumeCounter = ({ className }: ResumeCounterProps) => {
 
   if (isLoading) {
     return (
-      <div className={cn("text-center", className)}>
+      <div className={cn("text-center leading-none", className)}>
         <div className="flex items-center justify-center space-x-2">
           <div className="h-6 w-12 bg-blue-200 rounded animate-pulse"></div>
           <div className="h-6 w-24 bg-blue-200 rounded animate-pulse"></div>
@@ -108,7 +108,7 @@ export const ResumeCounter = ({ className }: ResumeCounterProps) => {
   }
 
   return (
-    <div className={cn("text-center", className)}>
+    <div className={cn("text-center leading-none", className)}>
       <div className="flex items-center justify-center space-x-2">
         <span className="text-lg font-semibold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent tracking-wide">
           {formatNumber(displayCount)}

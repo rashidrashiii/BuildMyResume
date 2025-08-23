@@ -109,13 +109,15 @@ const Home = () => {
                   </Button>
                 </Link>
               </div>
-
-              {/* Resume Counter */}
-              <div className="flex justify-center">
+              
+              {/* Resume Counter - Proper spacing */}
+              <div className="flex justify-center mt-2 mb-2 sm:mt-4 sm:mb-6">
                 <ResumeCounter />
               </div>
+          </div>
 
-            {/* Benefits Grid */}
+          {/* Benefits Grid - Proper spacing */}
+          <div className="text-center mt-6 sm:mt-8">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex justify-center">
@@ -128,7 +130,7 @@ const Home = () => {
             </div>
 
             {/* GitHub Stats */}
-            <div className="flex justify-center pt-2">
+            <div className="flex justify-center pt-2 mt-4 sm:mt-8">
               <GitHubStats className="text-center" />
             </div>
           </div>
