@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { FileText, Shield, AlertTriangle, CheckCircle } from "lucide-react";
 
 const Terms = () => {
-  const lastUpdated = "January 15, 2025";
+  const lastUpdated = "August 25, 2025";
 
   return (
     <>
