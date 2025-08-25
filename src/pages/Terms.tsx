@@ -312,32 +312,18 @@ const Terms = () => {
                   <CardTitle className="text-xl">13. Refund and Cancellation Policy</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="font-semibold mb-2">No Refund Policy</h4>
-                      <p className="text-muted-foreground">
-                        BuildMyResume is a completely free service with no paid features or subscriptions. As such, no refunds will be provided under any circumstances, as no payments are collected from users.
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-2">Service Cancellation</h4>
-                      <p className="text-muted-foreground">
-                        Users may stop using BuildMyResume at any time without any cancellation process, as no account creation or payment is required. Published resumes may be removed by the user at their discretion.
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-2">Service Discontinuation</h4>
-                      <p className="text-muted-foreground">
-                        In the event that BuildMyResume discontinues its service, no refunds will be provided as the service is provided free of charge. Users are responsible for backing up their resume data.
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-2">Third-Party Payments</h4>
-                      <p className="text-muted-foreground">
-                        If any third-party services or integrations require payment, those transactions are subject to the respective third-party's refund and cancellation policies, not BuildMyResume's terms.
-                      </p>
-                    </div>
-                  </div>
+                  <p className="text-muted-foreground">
+                    BuildMyResume is a completely free service with no paid features or subscriptions. As such, no refunds will be provided under any circumstances, as no payments are collected from users.
+                  </p>
+                  <p className="text-muted-foreground">
+                    Users may stop using BuildMyResume at any time without any cancellation process, as no account creation or payment is required. Published resumes may be removed by the user at their discretion.
+                  </p>
+                  <p className="text-muted-foreground">
+                    In the event that BuildMyResume discontinues its service, no refunds will be provided as the service is provided free of charge. Users are responsible for backing up their resume data.
+                  </p>
+                  <p className="text-muted-foreground">
+                    If any third-party services or integrations require payment, those transactions are subject to the respective third-party's refund and cancellation policies, not BuildMyResume's terms.
+                  </p>
                 </CardContent>
               </Card>
 
