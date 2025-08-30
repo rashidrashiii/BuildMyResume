@@ -126,13 +126,44 @@ app.post("/export-pdf", pdfExportLimiter, validateSecurePdfRequest, async (req: 
     }
 
     // Launch Puppeteer (full)
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ 
+      headless: true,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+        '--disable-gpu'
+      ]
+    });
     const page = await browser.newPage();
-    await page.setContent(html, { waitUntil: "networkidle0" });
+    
+    // Optimize page settings for PDF generation
+    await page.setCacheEnabled(false);
+    await page.setRequestInterception(true);
+    
+    // Block unnecessary resources to speed up rendering, but allow stylesheets
+    page.on('request', (req) => {
+      const resourceType = req.resourceType();
+      if (['image', 'font', 'media'].includes(resourceType)) {
+        req.abort();
+      } else {
+        req.continue();
+      }
+    });
+    
+    // Set a longer timeout for content loading and PDF generation
+    await page.setContent(html, { waitUntil: "networkidle0", timeout: 60000 });
+    
+    // Add a small delay to ensure content is fully rendered
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
     const pdfBuffer = await page.pdf({
       format: "a4",
       printBackground: true,
+      timeout: 60000, // 60 second timeout for PDF generation
     });
 
     await browser.close();
@@ -140,9 +171,19 @@ app.post("/export-pdf", pdfExportLimiter, validateSecurePdfRequest, async (req: 
     // Convert to base64 to return to frontend
     const base64Pdf = Buffer.from(pdfBuffer).toString("base64");
     res.status(200).json({ pdf: base64Pdf });
-  } catch (error) {
+  } catch (error: any) {
     console.error('PDF generation error:', error);
-    res.status(500).json({ error: 'Failed to generate PDF' });
+    
+    // Provide more specific error messages
+    if (error.name === 'TimeoutError') {
+      res.status(408).json({ error: 'PDF generation timed out. Please try again with a simpler resume layout.' });
+    } else if (error.message?.includes('browser')) {
+      res.status(500).json({ error: 'Browser initialization failed. Please try again.' });
+    } else if (error.message?.includes('memory')) {
+      res.status(500).json({ error: 'Insufficient memory for PDF generation. Please try again.' });
+    } else {
+      res.status(500).json({ error: 'Failed to generate PDF. Please try again.' });
+    }
   }
 });
 
