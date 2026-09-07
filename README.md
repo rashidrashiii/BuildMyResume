@@ -4,7 +4,7 @@
 
 ![BuildMyResume Screenshot](public/screenshot.png)
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Click%20Here-brightgreen?style=for-the-badge)](https://buildmyresume.live)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Click%20Here-brightgreen?style=for-the-badge)](https://build-my-resume-nu.vercel.app/)
 [![Video Demo](https://img.shields.io/badge/Video%20Demo-Watch%20Now-blue?style=for-the-badge)](https://youtu.be/Q_FjVnEu6Es)
 
 ---
@@ -241,7 +241,7 @@ If you want to contribute a new resume template, please read our [Template Autho
 
 ## About BuildMyResume
 
-BuildMyResume is a modern, open-source resume builder. Visit [BuildMyResume.live](https://BuildMyResume.live) to try it out or learn more.
+BuildMyResume is a modern, open-source resume builder. Visit [BuildMyResume.live](https://build-my-resume-nu.vercel.app/) to try it out or learn more.
 
 ---
 
@@ -270,7 +270,7 @@ See [CONTRIBUTING.md](./docs/CONTRIBUTING.md) for guidelines.
 - ![Screenshot 1](public/screenshot1.png)
 - ![Screenshot 2](public/screenshot2.png)
 
-**Live Demo:** [BuildMyResume.live](https://buildmyresume.live)
+**Live Demo:** [BuildMyResume.live](https://build-my-resume-nu.vercel.app/)
 **Video Demo:** [Watch on YouTube](https://youtu.be/Q_FjVnEu6Es)
 
 ---
