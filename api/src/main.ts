@@ -27,6 +27,7 @@ async function bootstrap() {
       'http://localhost:3001',
       'https://buildmyresume.live',
       'https://www.buildmyresume.live',
+      'httpa://www.build-my-resume-nu.vercel.app'
       process.env.FRONTEND_URL,
     ].filter(Boolean) as string[],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
